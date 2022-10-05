@@ -8,12 +8,16 @@
         }
 
         protected function executeAction() {
+            $gameParams = [];
+            $gameParams["key"] = $_SESSION["key"];
 
             if (!empty($_GET["play"])) {
-                var_dump("Play");
+                $gameParams["type"] = "PVP";
+                parent::callAPI("games/auto-match", $gameParams);
             }
             if (!empty($_GET["practice"])) {
-                var_dump("practice");
+                $gameParams["type"] = "TRAINING";
+                parent::callAPI("games/auto-match", $gameParams);
             }
             
             return [];
