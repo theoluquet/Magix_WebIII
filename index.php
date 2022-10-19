@@ -13,7 +13,7 @@
             <label for="username">Username :</label> <input type="text" name="username" id="usernameInput">            
         </div>
         <div class="login-password">
-            <label for="password">Password :</label> <input type="text" name="password" id="passwordInput">
+            <label for="password">Password :</label> <input type="password" name="password" id="passwordInput">
         </div>
         <div class="login-button">
             <button type="submit">Login</button>

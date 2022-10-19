@@ -8,18 +8,23 @@
         }
 
         protected function executeAction() {
+            $result = "";
             $gameParams = [];
             $gameParams["key"] = $_SESSION["key"];
 
             if (!empty($_GET["play"])) {
                 $gameParams["type"] = "PVP";
-                parent::callAPI("games/auto-match", $gameParams);
+                $result = parent::callAPI("games/auto-match", $gameParams);
+                header("location:game.php");
+                exit;
             }
             if (!empty($_GET["practice"])) {
                 $gameParams["type"] = "TRAINING";
-                parent::callAPI("games/auto-match", $gameParams);
+                $result = parent::callAPI("games/auto-match", $gameParams);
+                header("location:game.php");
+                exit;
             }
             
-            return [];
+            return compact("result");
         }
     }
