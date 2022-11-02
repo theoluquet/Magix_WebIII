@@ -21,10 +21,12 @@
         <H1>GAME OF MAGIX</H1>
         <div class="opponent-info">
             <h3>Opponent</h3>
-            <div class="hp">30 HP</div>
-            <div class="mp">10 MP</div>
-            <div class="avatar">IMG</div>
-            <div class="deck">30 cards</div>
+            <div class="opponent-name">Name</div>
+            <div class="opponent-hero-class">HeroClass</div>
+            <div class="opponent-avatar">IMG</div>
+            <div class="opponent-hp">30 HP</div>
+            <div class="opponent-mp">10 MP</div>
+            <div class="opponent-deck">30 cards</div>
             <div class="timer">50sec</div>
         </div>
         
@@ -36,12 +38,14 @@
         
         <div class="player-info">
             <h3>Player</h3>
-            <div class="hp">30 HP</div>
-            <div class="mp">10 MP</div>
-            <div class="hand">Cards</div>
-            <div class="deck">30 cards</div>
+            <div class="player-name"><?= $_SESSION["username"] ?></div>
+            <div class="player-hero-class">HeroClass</div>
+            <div class="player-avatar">IMG</div>
+            <div class="player-hp">30 HP</div>
+            <div class="player-mp">10 MP</div>
+            <div class="player-deck">30 cards</div>
             <div class="timer">50sec</div>
-            <div class="avatar">IMG</div>
+            <div class="player-hand">Cards</div>
             <div class="hero-power">Hero Power</div>
             <div class="end-turn">End Turn</div>
         </div>
