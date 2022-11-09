@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.game-container {
+    display: grid;
+    row-gap: 100px;
+    grid-template-rows: 1fr, 2fr, 2fr, 3fr;
+}
+
+/* .opponent-info {
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, ;
+} */
+
+.opponent-board {
+    grid-row: 2;
+}
+
+.player-board {
+    grid-row: 3;
+}
+
+.player-info {
+    grid-row: 4;
+}
+
+
+
