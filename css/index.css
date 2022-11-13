@@ -1,0 +1,175 @@
+:root {
+    --candle-light: rgba(252, 217, 23, 0.8);
+
+
+    --gris-clair: #37465B;
+    --vert-fonce: #08C6AB;
+    --vert-clair: #5AFFE7;
+    --violet: #726EFF;
+    --coins-sections: 10px;
+    --coins-boutons: 25px;
+    --police: 'Chakra Petch', sans-serif;
+    width: 100vw;
+    height: 100vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    overflow: hidden;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* .index-background-container {
+    margin: 0%;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 100px 300px rgba(0, 0, 0, 1) inset;
+} */
+
+.index-background {
+    width: 6243px;
+    height: 100%;
+    background-blend-mode: darken;
+    background: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9) ), url("../assets/WWscroll.jpg");
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    animation: slide 200s linear infinite;
+    
+}
+
+.main-frame {
+    width: fit-content;
+    height: fit-content;
+    margin: 5%;
+    padding: 2%;
+    border-radius: 5%;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    background-color: rgba(0, 0, 0, 0.3);
+    animation: flicker 1s linear  reverse infinite;
+    /* box-shadow: 0px 0px 500px 200px var(--candle-light); */
+
+}
+
+h1 {
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+
+.login-form-frame {
+    width: fit-content;
+    height: fit-content;
+    
+}
+
+
+
+@keyframes slide {
+    0% {
+      transform: translate(0)
+    }
+    100% {
+      transform: translate(-2081px);
+    }
+  }
+
+  /* box-shadow: 0px 0px 500px 200px rgba(252, 217, 23, 0.8); */
+
+  @keyframes flicker {
+	0% {
+        box-shadow: 0px 0px 300px 100px rgba(252, 217, 23, 0.5);
+    }
+	5% {
+		box-shadow: 0px 50px 500px 150px rgba(252, 217, 23, 0.3);
+	}
+	10% {
+		box-shadow: 50px -50px 500px 200px rgba(252, 217, 23, 0.8);
+	}
+	15% {
+		box-shadow: -50px 50px 500px 120px rgba(252, 217, 23, 0.4);
+	}
+	25% {
+		box-shadow: 0px 0px 500px 200px rgba(252, 217, 23, 0.8);
+	}
+	30% {
+		
+	}
+	35% {
+		
+	}
+	40% {
+		
+	}
+	45% {
+		
+	}
+	60% {
+		
+	}
+	70% {
+		
+	}
+	80% {
+		
+	}
+	90% {
+		
+	}
+	100% {
+		
+	}
+}
+
+  @keyframes flickerOG {
+	0% {
+		opacity: 0.4;
+	}
+	5% {
+		opacity: 0.5;
+	}
+	10% {
+		opacity: 0.6;
+	}
+	15% {
+		opacity: 0.85;
+	}
+	25% {
+		opacity: 0.5;
+	}
+	30% {
+		opacity: 1;
+	}
+	35% {
+		opacity: 0.1;
+	}
+	40% {
+		opacity: 0.25;
+	}
+	45% {
+		opacity: 0.5;
+	}
+	60% {
+		opacity: 1;
+	}
+	70% {
+		opacity: 0.85;
+	}
+	80% {
+		opacity: 0.4;
+	}
+	90% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}

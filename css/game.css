@@ -12,6 +12,7 @@
 .opponent-info {
     width: 100%;
     height: 10%;
+    border-bottom: 3px solid black;
     background-image: url(../assets/borders.png);
     background-size:cover;
     background-repeat: no-repeat;
@@ -43,6 +44,7 @@
 .player-info {
     width: 100%;
     height: 30%;
+    border-top: 3px solid black;
     background-image: url(../assets/borders.png);
     background-size:cover;
     background-repeat: no-repeat;
