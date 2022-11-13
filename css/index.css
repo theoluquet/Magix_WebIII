@@ -25,13 +25,6 @@ body {
     height: 100vh;
 }
 
-/* .index-background-container {
-    margin: 0%;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0px 0px 100px 300px rgba(0, 0, 0, 1) inset;
-} */
-
 .index-background {
     width: 6243px;
     height: 100%;
@@ -51,10 +44,10 @@ body {
     padding: 2%;
     border-radius: 5%;
     position: absolute;
-    top: 30%;
-    left: 30%;
-    background-color: rgba(0, 0, 0, 0.3);
-    animation: flicker 1s linear  reverse infinite;
+    top: 10%;
+    left: 36%;
+    background-color: rgba(0, 0, 0, 0.00000000000000000000000001);
+    animation: flicker 10s ease-in-out  alternate-reverse infinite;
     /* box-shadow: 0px 0px 500px 200px var(--candle-light); */
 
 }
@@ -63,12 +56,64 @@ h1 {
     width: 100%;
     height: fit-content;
     text-align: center;
+    font-family: 'Triforce';
+    font-size: 10em;
+    font-weight: 500;
+    margin-bottom: 10%;
 }
 
 .login-form-frame {
     width: fit-content;
     height: fit-content;
+    font-family: 'AncientHylian';
+    font-size: 2em;
     
+}
+
+form {
+    width: 100%;
+    height: fit-content;
+}
+
+form div {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+input {
+    width: 12em;
+    height: 2em;
+    text-align: center;
+    font-family: 'RocknRollOne';
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0 20px 0 20px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    border-bottom: 1px solid white;
+    margin: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    font-family: 'Triforce';
+    font-size: 2em;
+    border: none;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    transition: transform 0.8s;
+}
+
+button:hover {
+    /* transform: rotate(90); */
+    transform: rotate(90deg);
 }
 
 
@@ -92,84 +137,61 @@ h1 {
 		box-shadow: 0px 50px 500px 150px rgba(252, 217, 23, 0.3);
 	}
 	10% {
-		box-shadow: 50px -50px 500px 200px rgba(252, 217, 23, 0.8);
+		box-shadow: 50px -50px 500px 200px rgba(252, 217, 23, 0.6);
 	}
 	15% {
-		box-shadow: -50px 50px 500px 120px rgba(252, 217, 23, 0.4);
+		box-shadow: -50px 50px 500px 120px rgba(252, 217, 23, 0.6);
 	}
 	25% {
-		box-shadow: 0px 0px 500px 200px rgba(252, 217, 23, 0.8);
+		box-shadow: 0px 0px 500px 200px rgba(232, 217, 23, 0.7);
 	}
 	30% {
-		
+		box-shadow: 50px 50px 500px 80px rgba(252, 217, 23, 0.5);
 	}
 	35% {
-		
+		box-shadow: 50px 50px 500px 120px rgba(255, 182, 23, 0.2);
 	}
 	40% {
-		
+		box-shadow: 0px 20px 500px 150px rgba(252, 217, 23, 0.3);
 	}
 	45% {
-		
+		box-shadow: 10px 40px 500px 180px rgba(252, 217, 23, 0.5);
 	}
 	60% {
-		
+		box-shadow: -10px 20px 500px 140px rgba(252, 217, 23, 0.3);
 	}
 	70% {
-		
+		box-shadow: -30px 0px 500px 160px rgba(252, 217, 23, 0.4);
 	}
 	80% {
-		
+		box-shadow: -20px -20px 500px 140px rgba(252, 217, 23, 0.7);
 	}
 	90% {
-		
+		box-shadow: -40px -30px 500px 150px rgba(252, 217, 23, 0.5);
 	}
 	100% {
-		
+		box-shadow: -20px -10px 500px 115px rgba(252, 217, 23, 0.2);
 	}
 }
 
-  @keyframes flickerOG {
-	0% {
-		opacity: 0.4;
-	}
-	5% {
-		opacity: 0.5;
-	}
-	10% {
-		opacity: 0.6;
-	}
-	15% {
-		opacity: 0.85;
-	}
-	25% {
-		opacity: 0.5;
-	}
-	30% {
-		opacity: 1;
-	}
-	35% {
-		opacity: 0.1;
-	}
-	40% {
-		opacity: 0.25;
-	}
-	45% {
-		opacity: 0.5;
-	}
-	60% {
-		opacity: 1;
-	}
-	70% {
-		opacity: 0.85;
-	}
-	80% {
-		opacity: 0.4;
-	}
-	90% {
-		opacity: 0.5;
-	}
-	100% {
-		opacity: 1;
-	}
+
+
+@font-face {
+    font-family: "Triforce";
+    src: url("../assets/fonts/Triforce.ttf");
+}
+
+@font-face {
+    font-family: "AncientHylian";
+    src: url("../assets/fonts/AncientHylian.otf");
+}
+
+@font-face {
+    font-family: "ReggaeOne";
+    src: url("../assets/fonts/ReggaeOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: "RocknRollOne";
+    src: url("../assets/fonts/RocknRollOne-Regular.ttf");
 }
