@@ -1,0 +1,39 @@
+:root {
+    --candle-light: rgba(252, 217, 23, 0.8);
+
+
+    --gris-clair: #37465B;
+    --vert-fonce: #08C6AB;
+    --vert-clair: #5AFFE7;
+    --violet: #726EFF;
+    --coins-sections: 10px;
+    --coins-boutons: 25px;
+    --police: 'Chakra Petch', sans-serif;
+    width: 100vw;
+    height: 100vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    overflow: hidden;    
+    /* max-width: 1440px; */
+}
+
+body {
+    background-image: url("../assets/jellyshop2.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+}
+
+.chat-frame {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    top: 20%;
+    left: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.5);
+}
