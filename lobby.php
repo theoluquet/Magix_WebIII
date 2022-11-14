@@ -1,11 +1,11 @@
-<!-- <?php
+<?php
     require_once("action/LobbyAction.php");
 
     $action = new LobbyAction();
     $data = $action->execute();
 
     require_once("partial/header.php");
-?> -->
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,5 +46,5 @@
 </iframe>
 </div> -->
 
-<!-- <?php
-    require_once("partial/footer.php"); -->
+<?php
+    require_once("partial/footer.php");

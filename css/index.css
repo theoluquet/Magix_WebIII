@@ -34,7 +34,7 @@ body {
     background-repeat: repeat-x;
     background-attachment: fixed;
     animation: slide 200s linear infinite;
-    
+
 }
 
 .main-frame {
@@ -45,9 +45,13 @@ body {
     border-radius: 5%;
     position: absolute;
     top: 10%;
-    left: 36%;
+    left: 32%;
     background-color: rgba(0, 0, 0, 0.00000000000000000000000001);
     animation: flicker 10s ease-in-out  alternate-reverse infinite;
+
+
+
+
     /* box-shadow: 0px 0px 500px 200px var(--candle-light); */
 
 }
@@ -63,16 +67,19 @@ h1 {
 }
 
 .login-form-frame {
-    width: fit-content;
+    width: 100%;
     height: fit-content;
     font-family: 'AncientHylian';
-    font-size: 2em;
-    
+    font-size: 2em;    
 }
 
 form {
     width: 100%;
     height: fit-content;
+}
+
+label {
+    margin-top: 5px;
 }
 
 form div {
@@ -132,45 +139,73 @@ button:hover {
   @keyframes flicker {
 	0% {
         box-shadow: 0px 0px 300px 100px rgba(252, 217, 23, 0.5);
+        box-shadow: -20px -10px 500px 115px rgba(252, 217, 23, 0.2);
+
     }
 	5% {
 		box-shadow: 0px 50px 500px 150px rgba(252, 217, 23, 0.3);
+        box-shadow: 0px 0px 300px 100px rgba(252, 217, 23, 0.5);
+
 	}
 	10% {
 		box-shadow: 50px -50px 500px 200px rgba(252, 217, 23, 0.6);
+        box-shadow: 0px 50px 500px 150px rgba(252, 217, 23, 0.3);
+
 	}
 	15% {
 		box-shadow: -50px 50px 500px 120px rgba(252, 217, 23, 0.6);
+        box-shadow: 50px -50px 500px 200px rgba(252, 217, 23, 0.6);
+
 	}
 	25% {
 		box-shadow: 0px 0px 500px 180px rgba(232, 176, 23, 0.7);
+        box-shadow: -50px 50px 500px 120px rgba(252, 217, 23, 0.6);
+
 	}
 	30% {
 		box-shadow: 50px 50px 500px 80px rgba(252, 217, 23, 0.5);
+        box-shadow: 0px 0px 500px 180px rgba(232, 176, 23, 0.7);
+
 	}
 	35% {
 		box-shadow: 50px 50px 500px 120px rgba(255, 182, 23, 0.2);
+        box-shadow: 50px 50px 500px 80px rgba(252, 217, 23, 0.5);
+
 	}
 	40% {
 		box-shadow: 0px 20px 500px 150px rgba(252, 217, 23, 0.3);
+        box-shadow: 50px 50px 500px 120px rgba(255, 182, 23, 0.2);
+
 	}
 	45% {
 		box-shadow: 10px 40px 500px 180px rgba(252, 160, 23, 0.5);
+        box-shadow: 0px 20px 500px 150px rgba(252, 217, 23, 0.3);
+
 	}
 	60% {
 		box-shadow: -10px 20px 500px 140px rgba(252, 217, 23, 0.3);
+        box-shadow: 10px 40px 500px 180px rgba(252, 160, 23, 0.5);
+
 	}
 	70% {
 		box-shadow: -30px 0px 500px 160px rgba(252, 217, 23, 0.4);
+        box-shadow: -10px 20px 500px 140px rgba(252, 217, 23, 0.3);
+
 	}
 	80% {
 		box-shadow: -20px -20px 500px 140px rgba(252, 217, 23, 0.7);
+        box-shadow: -30px 0px 500px 160px rgba(252, 217, 23, 0.4);
+
 	}
 	90% {
 		box-shadow: -40px -30px 500px 150px rgba(252, 217, 23, 0.5);
+        box-shadow: -20px -20px 500px 140px rgba(252, 217, 23, 0.7);
+
 	}
 	100% {
 		box-shadow: -20px -10px 500px 115px rgba(252, 217, 23, 0.2);
+        box-shadow: -40px -30px 500px 150px rgba(252, 217, 23, 0.5);
+
 	}
 }
 

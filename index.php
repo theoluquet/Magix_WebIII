@@ -1,11 +1,11 @@
-<!-- <?php
+<?php
     require_once("action/IndexAction.php");
 
     $action = new IndexAction();
     $data = $action->execute();
 
     require_once("partial/header.php");
-?> -->
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,5 +41,5 @@
         </div>
 </body>
 
-<!-- <?php
-    require_once("partial/footer.php"); -->
+<?php
+    require_once("partial/footer.php");
