@@ -1,3 +1,5 @@
+import getCard from "./card.js"
+
 let gameInfos;
 let gameInfosInitialized = false;
 
@@ -17,6 +19,10 @@ let playerMpNode;
 let playerDeckNode;
 let playerHandNode;
 
+let gameBoardNode;
+let playerBoardNode;
+let opponentBoardNode;
+
 const updateGameInfos = () => {
     timerNode.innerHTML = gameInfos.remainingTurnTime;
 
@@ -27,6 +33,40 @@ const updateGameInfos = () => {
     playerHpNode.innerHTML = gameInfos.hp;
     playerMpNode.innerHTML = gameInfos.mp;
     playerDeckNode.innerHTML = gameInfos.handSize;
+
+    
+    while (opponentBoardNode.hasChildNodes()) {
+        opponentBoardNode.removeChild(opponentBoardNode.firstChild);
+      }
+    let opponentBoardCards = gameInfos.opponent.board;
+    for (let i = 0; i < opponentBoardCards.length; i++) {
+        let opponentBoardCardNode = document.createElement("div");
+        opponentBoardCardNode.classList.add("opponent-board-card");
+        opponentBoardCardNode.innerHTML = getCard(opponentBoardCards[i]);
+        opponentBoardNode.append(opponentBoardCardNode);       
+    }
+
+    while (playerBoardNode.hasChildNodes()) {
+        playerBoardNode.removeChild(playerBoardNode.firstChild);
+      }
+    let playerBoardCards = gameInfos.board;
+    for (let i = 0; i < playerBoardCards.length; i++) {
+        let playerBoardCardNode = document.createElement("div");
+        playerBoardCardNode.classList.add("player-board-card");
+        playerBoardCardNode.innerHTML = getCard(playerBoardCards[i]);
+        playerBoardNode.append(playerBoardCardNode);       
+    }
+
+    while (playerHandNode.hasChildNodes()) {
+        playerHandNode.removeChild(playerHandNode.firstChild);
+      }
+    let playerHandCards = gameInfos.hand;
+    for (let i = 0; i < playerHandCards.length; i++) {
+        let playerHandCardNode = document.createElement("div");
+        playerHandCardNode.classList.add("player-hand-card");
+        playerHandCardNode.innerHTML = getCard(playerHandCards[i]);
+        playerHandNode.append(playerHandCardNode);       
+    }    
 }
 
 const initializeGameInfos = () => {
@@ -35,6 +75,15 @@ const initializeGameInfos = () => {
 
     playerHeroClassNode.innerHTML = gameInfos.heroClass;
 }
+
+
+
+
+
+
+
+
+
 
 const state = () => {
 
@@ -78,6 +127,10 @@ window.addEventListener("load", () => {
     playerMpNode = document.querySelector(".player-mp");
     playerDeckNode = document.querySelector(".player-deck");
     playerHandNode = document.querySelector(".player-hand");
+
+    gameBoardNode = document.querySelector(".game-board");
+    opponentBoardNode = document.querySelector(".opponent-board");
+    playerBoardNode = document.querySelector(".player-board");
 
     setTimeout(state, 1000); // Appel initial (attendre 1 seconde)
 });

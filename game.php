@@ -14,7 +14,7 @@ require_once("partial/header.php");
 
 <head>
     <title>GAME OF MAGIX</title>
-    <script defer src="js/game.js"></script>
+    <script defer src="js/game.js" type="module"></script>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/game.css">
 </head>
@@ -57,7 +57,7 @@ require_once("partial/header.php");
             <div class="hero-power">Hero Power</div>
             <div class="end-turn">End Turn</div>
             <div class="player-hand">
-                <div class="player-hand-card">
+                <!-- <div class="player-hand-card">
                     <div class="phc-img"></div>
                     <div class="phc-attack"></div>
                     <div class="phc-hp"></div>
@@ -96,7 +96,7 @@ require_once("partial/header.php");
                     <div class="phc-cost-mp"></div>
                     <div class="phc-mechanic"></div>
                     <div class="phc-dedicated"></div>
-                </div>                
+                </div>                 -->
             </div>
             <div class="player-avatar">IMG</div>
             <div class="player-name"><?= $_SESSION["username"] ?></div>
