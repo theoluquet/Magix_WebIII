@@ -54,30 +54,41 @@ const updateGameInfos = () => {
     while (opponentBoardNode.hasChildNodes()) {
         opponentBoardNode.removeChild(opponentBoardNode.firstChild);
       }
+
     let opponentBoardCards = gameInfos.opponent.board;
 
     for (let i = 0; i < opponentBoardCards.length; i++) {
-        opponentBoardNode.append(getCard(opponentBoardCards[i]));       
+        let card = getCard(opponentBoardCards[i])
+        card.addEventListener("click", function(){attackTarget(card)});
+        opponentBoardNode.append(card);       
     }
+
 
     while (playerBoardNode.hasChildNodes()) {
         playerBoardNode.removeChild(playerBoardNode.firstChild);
       }
+
     let playerBoardCards = gameInfos.board;
-    for (let i = 0; i < playerBoardCards.length; i++) {        
-        playerBoardNode.append(getCard(playerBoardCards[i]));       
+
+    for (let i = 0; i < playerBoardCards.length; i++) {
+        let card = getCard(playerBoardCards[i])
+        card.addEventListener("click", function(){beginAttack(card)});        
+        playerBoardNode.append(card);       
     }
+
 
     while (playerHandNode.hasChildNodes()) {
         playerHandNode.removeChild(playerHandNode.firstChild);
       }
+
     let playerHandCards = gameInfos.hand;
+    
     for (let i = 0; i < playerHandCards.length; i++) {
         // let playerHandCardNode = document.createElement("div");
         // playerHandCardNode.classList.add("player-hand-card");
         // playerHandCardNode.innerHTML = getCard(playerHandCards[i]);
         let card = getCard(playerHandCards[i])
-        card.addEventListener("click", function(){test(card)});
+        card.addEventListener("click", function(){putOnBoard(card)});
         // element.addEventListener(event, function, useCapture);
         playerHandNode.append(card);       
     }    
@@ -105,9 +116,25 @@ const initializeGameInfos = () => {
 
 
 
+function putOnBoard(cardNode) {
 
+}
 
+function beginAttack(cardNode) {
 
+}
+
+function attackTarget(targetCardNode) {
+    if (!targetUID) {
+        // if (target == undefined)
+        targetUID = node.id;
+        
+        // APPEL ATTAQUE
+
+        //targetUID = undefined;
+        targetUID = null;
+    }
+}
 
 
 const state = () => {
@@ -161,6 +188,3 @@ window.addEventListener("load", () => {
 });
 
 
-function test(node) {
-    node.style.opacity = 0.2;
-}
