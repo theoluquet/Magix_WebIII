@@ -1,4 +1,4 @@
-export default function getCard(cardInfos) {
+export default function getCard(cardInfos) {    
 
     const UID = cardInfos.uid;
     const ID = cardInfos.id;
@@ -32,18 +32,25 @@ export default function getCard(cardInfos) {
             cardImg = "assets/cards/taunt.png";
             cardType = "taunt";
         }
-    }    
+    }
+    
+    let cardNode = document.createElement("div");
+    cardNode.className = "card ${cardType}";
+    cardNode.id = "${UID}";
 
-    return `
-        <div class="card ${cardType}" id="${UID}">
-            <div class="card-img-container" id="${ID}">
-                <img src="${cardImg}" class="card-img" id="${ID}">
-            </div>
-            <div class="card-mechanic">${MECHANICS}</div>
+    cardNode.innerHTML = `        
+        <div class="card-img-container" id="${ID}">
+            <img src="${cardImg}" class="card-img" id="${ID}">
+        </div>
+        <div class="card-mechanic">${MECHANICS}</div>
+        <div class="card-stats">
             <div class="card-cost-mp">${COST}</div>
             <div class="card-attack">${ATK}</div>
             <div class="card-hp">${HP}</div>
-            <div class="card-dedicated">${DEDICATED}</div>
         </div>
-            `;
+        <div class="card-dedicated">${DEDICATED}</div>
+        `;
+    
+
+    return cardNode;
 }

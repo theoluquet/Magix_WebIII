@@ -1,5 +1,21 @@
 import getCard from "./card.js"
 
+const CLASSPICS = {
+    "Demonhunter": {path: "assets/heroes/demonhunter.png"},
+    "Druid": {path: "assets/heroes/druid.png"},
+    "Hunter": {path: "assets/heroes/hunter.png"},
+    "Mage": {path: "assets/heroes/mage.png"},
+    "Paladin": {path: "assets/heroes/paladin.png"},
+    "Priest": {path: "assets/heroes/priest.png"},
+    "Rogue": {path: "assets/heroes/rogue.png"},
+    "Shaman": {path: "assets/heroes/shaman.png"},
+    "Warlock": {path: "assets/heroes/warlock.png"},
+    "Warrior": {path: "assets/heroes/warrior.png"}
+}
+
+let pickedCardUID;
+let targetUID;
+
 let gameInfos;
 let gameInfosInitialized = false;
 
@@ -39,22 +55,17 @@ const updateGameInfos = () => {
         opponentBoardNode.removeChild(opponentBoardNode.firstChild);
       }
     let opponentBoardCards = gameInfos.opponent.board;
+
     for (let i = 0; i < opponentBoardCards.length; i++) {
-        let opponentBoardCardNode = document.createElement("div");
-        opponentBoardCardNode.classList.add("opponent-board-card");
-        opponentBoardCardNode.innerHTML = getCard(opponentBoardCards[i]);
-        opponentBoardNode.append(opponentBoardCardNode);       
+        opponentBoardNode.append(getCard(opponentBoardCards[i]));       
     }
 
     while (playerBoardNode.hasChildNodes()) {
         playerBoardNode.removeChild(playerBoardNode.firstChild);
       }
     let playerBoardCards = gameInfos.board;
-    for (let i = 0; i < playerBoardCards.length; i++) {
-        let playerBoardCardNode = document.createElement("div");
-        playerBoardCardNode.classList.add("player-board-card");
-        playerBoardCardNode.innerHTML = getCard(playerBoardCards[i]);
-        playerBoardNode.append(playerBoardCardNode);       
+    for (let i = 0; i < playerBoardCards.length; i++) {        
+        playerBoardNode.append(getCard(playerBoardCards[i]));       
     }
 
     while (playerHandNode.hasChildNodes()) {
@@ -62,18 +73,32 @@ const updateGameInfos = () => {
       }
     let playerHandCards = gameInfos.hand;
     for (let i = 0; i < playerHandCards.length; i++) {
-        let playerHandCardNode = document.createElement("div");
-        playerHandCardNode.classList.add("player-hand-card");
-        playerHandCardNode.innerHTML = getCard(playerHandCards[i]);
-        playerHandNode.append(playerHandCardNode);       
+        // let playerHandCardNode = document.createElement("div");
+        // playerHandCardNode.classList.add("player-hand-card");
+        // playerHandCardNode.innerHTML = getCard(playerHandCards[i]);
+        let card = getCard(playerHandCards[i])
+        card.addEventListener("click", function(){test(card)});
+        // element.addEventListener(event, function, useCapture);
+        playerHandNode.append(card);       
     }    
 }
 
 const initializeGameInfos = () => {
     opponentNameNode.innerHTML = gameInfos.opponent.username;
     opponentHeroClassNode.innerHTML = gameInfos.opponent.heroClass;
+    opponentAvatarNode.innerHTML = `        
+        <img src="${CLASSPICS[gameInfos.opponent.heroClass].path}" alt="${gameInfos.opponent.heroClass}">
+        `;
 
     playerHeroClassNode.innerHTML = gameInfos.heroClass;
+    // playerAvatarNode.innerHTML = `        
+    //     <img src="${CLASSPICS[gameInfos.heroClass].path}" alt="${gameInfos.heroClass}">
+    //     `;
+
+    let testNode = document.querySelector(".player-data");
+    testNode.style.background = `url(${CLASSPICS[gameInfos.heroClass].path}) no-repeat bottom`;
+    // testNode.style.backgroundSize = "contain";
+
 }
 
 
@@ -134,3 +159,8 @@ window.addEventListener("load", () => {
 
     setTimeout(state, 1000); // Appel initial (attendre 1 seconde)
 });
+
+
+function test(node) {
+    node.style.opacity = 0.2;
+}

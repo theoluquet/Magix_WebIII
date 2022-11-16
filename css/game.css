@@ -1,6 +1,8 @@
 :root {
     width: 100vw;
     height: 100vh;
+    --card-width: 140px;
+    --card-height: 230px;
 }
 
 * {
@@ -34,17 +36,30 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    
+    display: flex;
+    flex-direction: column;    
 }
 
 .opponent-board {
     width: 100%;
-    height: 35%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-basis: auto;
+    flex-shrink: 0;
 }
 
 .player-board {
     width: 100%;
-    height: 65%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-basis: auto;
+    flex-shrink: 0;
 }
 
 .player-info {
@@ -55,26 +70,70 @@
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    align-items:flex-start;
+    align-items:flex-start; */
+    display: grid;
+    grid-template-columns: 100px 1fr 250px;
+}
+
+.player-commands {
+    flex-basis: 10%;
 }
 
 .player-hand {
-    width: 70%;
+    /* width: 80%; */
     height: 100%;
     display: flex;
+    flex-basis: 80%;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    overflow: visible;   
 }
 
-.player-hand-card {
+.player-data {
+    flex-basis: 10%;
+}
+
+.player-avatar {
+    width: 100%;
+    height: 200px;
+    overflow: visible;
+}
+
+/* .player-hand-card {
     width: 150px;
     height: 220px;
     background-color: rgb(231, 209, 107);
     margin-top: 2%;
+} */
+
+.card {
+    /* width: 180px; */
+    height: var(--card-height);
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgb(231, 209, 107);
+    flex-basis: var(--card-width);
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
+.card-stats {
+    width: var(--card-width);
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+.card-stats > div {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
 
 
