@@ -8,7 +8,14 @@
         }
 
         protected function executeAction() {
-            
-            return [];
+            $result = [];
+            $gameParams = [];
+            $gameParams["key"] = $_SESSION["key"];
+
+            if ($_POST["end-turn"] = "true") {
+                $gameParams["type"] = "END_TURN";
+                $result = parent::callAPI("games/action", $gameParams);
+            }
+            return compact("result");
         }
     }

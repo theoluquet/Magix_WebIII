@@ -39,7 +39,9 @@ require_once("partial/header.php");
             <div class="player-commands">
                 <div class="hero-power">Hero Power</div>
                 <div class="timer">50sec</div>
-                <div class="end-turn">End Turn</div>
+                <div class="end-turn">
+                <a href="?end-turn=true">End turn</a>
+                </div>
             </div>
             <div class="player-hand-container">
                 <div class="player-hand"></div>

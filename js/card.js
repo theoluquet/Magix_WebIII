@@ -35,8 +35,8 @@ export default function getCard(cardInfos) {
     }
     
     let cardNode = document.createElement("div");
-    cardNode.className = "card ${cardType}";
-    cardNode.id = "${UID}";
+    cardNode.className = `card ${cardType}`;
+    cardNode.id = `${UID}`;
 
     cardNode.innerHTML = `        
         <div class="card-img-container" id="${ID}">
@@ -49,8 +49,7 @@ export default function getCard(cardInfos) {
             <div class="card-hp">${HP}</div>
         </div>
         <div class="card-dedicated">${DEDICATED}</div>
-        `;
-    
+        `;    
 
     return cardNode;
 }

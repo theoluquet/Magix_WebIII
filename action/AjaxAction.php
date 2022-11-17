@@ -12,9 +12,33 @@
             $gameParams = [];
             $gameParams["key"] = $_SESSION["key"];
 
+            // Update game state
             if (!empty($_POST["game-update"]) && ($_POST["game-update"] = "true")) {
                 $result = parent::callAPI("games/state", $gameParams);
             }
+
+            // Put a card on the board
+            if (!empty($_POST["PLAY"]) && !empty($_POST["uid"])) {
+
+                $gameParams["type"] = $_POST["PLAY"];
+                $gameParams["uid"] = $_POST["uid"];
+                $result = parent::callAPI("games/action", $gameParams);
+            }
+
+            // Attack
+            if (!empty($_POST["ATTACK"]) && !empty($_POST["uid"]) && !empty($_POST["targetuid"])) {
+
+                $gameParams["type"] = $_POST["ATTACK"];
+                $gameParams["uid"] = $_POST["uid"];
+                $gameParams["targetuid"] = $_POST["targetuid"];
+                $result = parent::callAPI("games/action", $gameParams);
+            }
+
+            // End turn
+            // if (!empty($_POST["end-turn"]) && ($_POST["end-turn"] = "true")) {
+            //     $gameParams["type"] = "END_TURN";
+            //     $result = parent::callAPI("games/action", $gameParams);
+            // }
 
 
 

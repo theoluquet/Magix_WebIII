@@ -1,7 +1,7 @@
 import getCard from "./card.js"
 
 const CLASSPICS = {
-    "Demonhunter": {path: "assets/heroes/demonhunter.png"},
+    "DemonHunter": {path: "assets/heroes/demonhunter.png"},
     "Druid": {path: "assets/heroes/druid.png"},
     "Hunter": {path: "assets/heroes/hunter.png"},
     "Mage": {path: "assets/heroes/mage.png"},
@@ -13,8 +13,8 @@ const CLASSPICS = {
     "Warrior": {path: "assets/heroes/warrior.png"}
 }
 
-let pickedCardUID;
-let targetUID;
+let pickedCardUID = null;
+let targetUID = null;
 
 let gameInfos;
 let gameInfosInitialized = false;
@@ -59,7 +59,7 @@ const updateGameInfos = () => {
 
     for (let i = 0; i < opponentBoardCards.length; i++) {
         let card = getCard(opponentBoardCards[i])
-        card.addEventListener("click", function(){attackTarget(card)});
+        card.addEventListener("dblclick", function(){attackTarget(card)});
         opponentBoardNode.append(card);       
     }
 
@@ -72,7 +72,7 @@ const updateGameInfos = () => {
 
     for (let i = 0; i < playerBoardCards.length; i++) {
         let card = getCard(playerBoardCards[i])
-        card.addEventListener("click", function(){beginAttack(card)});        
+        card.addEventListener("dblclick", function(){beginAttack(card)});        
         playerBoardNode.append(card);       
     }
 
@@ -88,7 +88,7 @@ const updateGameInfos = () => {
         // playerHandCardNode.classList.add("player-hand-card");
         // playerHandCardNode.innerHTML = getCard(playerHandCards[i]);
         let card = getCard(playerHandCards[i])
-        card.addEventListener("click", function(){putOnBoard(card)});
+        card.addEventListener("dblclick", function(){putOnBoard(card)});
         // element.addEventListener(event, function, useCapture);
         playerHandNode.append(card);       
     }    
@@ -117,21 +117,45 @@ const initializeGameInfos = () => {
 
 
 function putOnBoard(cardNode) {
+    if (!pickedCardUID) {
+        pickedCardUID = cardNode.id;
 
+        let formData = new FormData();
+        formData.append("PLAY", "PLAY");
+        formData.append("uid", pickedCardUID);
+        fetch("ajax.php", { // Il faut créer cette page et son contrôleur appelle
+            method: "POST", // l’API (games/state)
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+            })    
+        updateGameInfos();
+        pickedCardUID = null;
+    }
 }
 
 function beginAttack(cardNode) {
-
+    pickedCardUID = cardNode.id;
 }
 
 function attackTarget(targetCardNode) {
-    if (!targetUID) {
-        // if (target == undefined)
-        targetUID = node.id;
+    if (!pickedCardUID && !targetUID) {
+        targetUID = targetCardNode.id;
         
         // APPEL ATTAQUE
-
-        //targetUID = undefined;
+        let formData = new FormData();
+        formData.append("ATTACK", "ATTACK");
+        formData.append("uid", pickedCardUID);
+        formData.append("targetuid", targetUID);
+        fetch("ajax.php", { // Il faut créer cette page et son contrôleur appelle
+            method: "POST", // l’API (games/state)
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+            })    
+        updateGameInfos();
         targetUID = null;
     }
 }
