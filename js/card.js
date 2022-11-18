@@ -39,17 +39,19 @@ export default function getCard(cardInfos) {
     cardNode.id = `${UID}`;
 
     cardNode.innerHTML = `        
-        <div class="card-img-container" id="${ID}">
-            <img src="${cardImg}" class="card-img" id="${ID}">
+        <div class="card-img-container" id="${UID}">
+            <img src="${cardImg}" class="card-img" id="${UID}">
         </div>
-        <div class="card-mechanic">${MECHANICS}</div>
-        <div class="card-stats">
-            <div class="card-cost-mp">${COST}</div>
-            <div class="card-attack">${ATK}</div>
-            <div class="card-hp">${HP}</div>
+        <div class="card-mechanic" id="${UID}">${MECHANICS}</div>
+        <div class="card-stats" id="${UID}">
+            <div class="card-cost-mp" id="${UID}">${COST}</div>
+            <div class="card-attack" id="${UID}">${ATK}</div>
+            <div class="card-hp" id="${UID}">${HP}</div>
         </div>
-        <div class="card-dedicated">${DEDICATED}</div>
-        `;    
+        <div class="card-dedicated" id="${UID}">${DEDICATED}</div>
+        `;
+        
+    //cardNode.querySelectorAll("div, img").id = `${UID}`;
 
     return cardNode;
 }
