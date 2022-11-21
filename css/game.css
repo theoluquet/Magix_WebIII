@@ -15,27 +15,23 @@
 .game-container {
     width: 100vw;
     height: 100vh;
+    background-image: url(../assets/board0.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .opponent-info {
     width: 100%;
     height: 10%;
     border-bottom: 3px solid black;
-    background-image: url(../assets/borders.png);
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center;
     display: flex;
     justify-content: space-between;
 }
 
 .game-board {
     width: 100%;
-    height: 60%;
-    background-image: url(../assets/board0.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    height: 60%;    
     display: flex;
     flex-direction: column;    
 }
@@ -66,7 +62,6 @@
     width: 100%;
     height: 30%;
     border-top: 3px solid black;
-    background-image: url(../assets/borders.png);
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;

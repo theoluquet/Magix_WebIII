@@ -35,10 +35,10 @@
             }
 
             // End turn
-            // if (!empty($_POST["end-turn"]) && ($_POST["end-turn"] = "true")) {
-            //     $gameParams["type"] = "END_TURN";
-            //     $result = parent::callAPI("games/action", $gameParams);
-            // }
+            if (!empty($_POST["END_TURN"])) {
+                $gameParams["type"] = "END_TURN";
+                $result = parent::callAPI("games/action", $gameParams);
+            }
 
 
 
