@@ -44,9 +44,9 @@ export default function getCard(cardInfos) {
         </div>
         <div class="card-mechanic" id="${UID}">${MECHANICS}</div>
         <div class="card-stats" id="${UID}">
+        <div class="card-attack" id="${UID}">${ATK}</div>
+        <div class="card-hp" id="${UID}">${HP}</div>
             <div class="card-cost-mp" id="${UID}">${COST}</div>
-            <div class="card-attack" id="${UID}">${ATK}</div>
-            <div class="card-hp" id="${UID}">${HP}</div>
         </div>
         <div class="card-dedicated" id="${UID}">${DEDICATED}</div>
         `;

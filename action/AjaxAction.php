@@ -34,15 +34,17 @@
                 $result = parent::callAPI("games/action", $gameParams);
             }
 
-            // End turn
+            // End Turn
             if (!empty($_POST["END_TURN"])) {
                 $gameParams["type"] = "END_TURN";
                 $result = parent::callAPI("games/action", $gameParams);
             }
 
-
-
-            // if (heroPower())
+            // Hero Power
+            if (!empty($_POST["HERO_POWER"])) {
+                $gameParams["type"] = "HERO_POWER";
+                $result = parent::callAPI("games/action", $gameParams);
+            }
 
             // if ...
 

@@ -1,0 +1,32 @@
+GAME :
+_ Attaque ennemi ! (targetuid == 0)
+_ Card states [glow] (charge, taunt, confused, stealth, idle != sleeping, not enough MP ...)
+_ Various messages : WAITING, Board full, VICTORY/DEFEAT ... 
+_ Surrender
+_ CSS clean
+_ *Chat (semi-optional)
+
+
+LOBBY :
+_ Boutons ?!?
+_ Spectate
+_ Deck builder
+
+
+CARD DATA (PGSQL) :
+"En utilisant une base de données pgsql, vous devez conserver le nombre de
+fois où une carte a été jouée (toutes parties confondues). Il faut ensuite créer
+une page permettant d’afficher (de façon claire et ordonnée selon leur
+popularité), les cartes et leur popularité (ratio en pourcentage de son nombre
+de fois où elle a été jouée divisé par le nombre total de cartes jouées).
+Il doit être possible de supprimer les entrées de votre base de données via un
+bouton prévu à cet effet."
+
+
+MISC :
+    LOCALSTORAGE USERNAME
+    Blank card ?
+
+
+_ Clean code
+_ Comments

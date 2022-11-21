@@ -200,7 +200,18 @@ function attackTarget(targetCardNode) {
 
 
 function useHeroPower() {
-
+    let formData = new FormData();
+    formData.append("HERO_POWER", "HERO_POWER");
+    fetch("ajax.php", { 
+        method: "POST", 
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+        })    
+    updateGameInfos();
+    console.clear();
+    console.log("Hero Power used !");
 }
 
 function endTurn() {
@@ -262,6 +273,7 @@ window.addEventListener("load", () => {
     playerDeckNode = document.querySelector(".player-deck");
     playerHandNode = document.querySelector(".player-hand");
     heroPowerNode  = document.querySelector(".hero-power");
+    heroPowerNode.addEventListener("click", function(){useHeroPower()});
     endTurnNode  = document.querySelector(".end-turn");
     endTurnNode.addEventListener("click", function(){endTurn()});
 
