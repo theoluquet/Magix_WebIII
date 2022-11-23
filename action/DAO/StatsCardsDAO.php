@@ -35,7 +35,7 @@
             (
                 cardID,
                 times_played,
-                ((times_played / SUM(times_played)) * 100) AS popularity
+                ((times_played / SUM(times_played)) * 100) AS 'popularity'
             )
             FROM played_cards");
 

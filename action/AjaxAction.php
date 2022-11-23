@@ -52,6 +52,16 @@
                 $gameParams["type"] = "HERO_POWER";
                 $result = parent::callAPI("games/action", $gameParams);
             }
+            
+            // Reset the cards statistis in the database
+            if (!empty($_POST["resetStats"])) {
+                $result = StatsCardsDAO::resetStats();                
+            }
+
+            // getStats
+            if (!empty($_POST["getStats"])) {
+                $result = StatsCardsDAO::getStats();                
+            }
 
             // if ...
 

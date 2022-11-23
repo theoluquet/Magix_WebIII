@@ -44,3 +44,10 @@ CREATE TABLE played_cards (
 	cardID INT PRIMARY KEY,
 	times_played BIGINT
 );
+
+DROP TABLE played_cards;
+
+SELECT * FROM played_cards;
+
+
+SELECT cardID, times_played, COUNT(times_played) AS somme, ((times_played / SUM(times_played))) AS popularity FROM played_cards GROUP BY played_cards.cardID;

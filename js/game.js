@@ -227,6 +227,30 @@ function useHeroPower() {
     updateGameInfos();
     console.clear();
     console.log("Hero Power used !");
+
+    // let formDataResetStats = new FormData();
+    // formDataResetStats.append("resetStats", "resetStats");
+    // fetch("ajax.php", { 
+    //     method: "POST", 
+    //     body: formDataResetStats
+    // })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.clear();
+    //         console.log(data);
+    //     })
+        
+    let formDataGetStats = new FormData();
+    formDataGetStats.append("getStats", "getStats");
+    fetch("ajax.php", { 
+        method: "POST", 
+        body: formDataGetStats
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.clear();
+            console.log(data);
+        }) 
 }
 
 function endTurn() {
