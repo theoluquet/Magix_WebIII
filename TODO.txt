@@ -12,6 +12,9 @@ _ Boutons ?!?
 _ Spectate
 _ Deck builder
 
+LOGIN :
+_ Message d'erreur
+
 
 CARD DATA (PGSQL) :
 "En utilisant une base de données pgsql, vous devez conserver le nombre de
@@ -30,3 +33,14 @@ MISC :
 
 _ Clean code
 _ Comments
+
+
+
+
+
+SQL :
+
+CREATE TABLE played_cards (
+	cardID INT PRIMARY KEY,
+	times_played BIGINT
+);

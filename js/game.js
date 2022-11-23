@@ -108,7 +108,10 @@ const updateGameInfos = () => {
         // let playerHandCardNode = document.createElement("div");
         // playerHandCardNode.classList.add("player-hand-card");
         // playerHandCardNode.innerHTML = getCard(playerHandCards[i]);
-        let card = getCard(playerHandCards[i])
+        let card = getCard(playerHandCards[i]);
+        /////////////////////////////////////////////
+        //card.setAttribute(data-cardID);
+        ////////////////////////////////////////////
         let cardChildNodes = card.childNodes;
         cardChildNodes.forEach(node => {
             node.addEventListener("click", function(){putOnBoard(card)});
@@ -138,7 +141,10 @@ const initializeGameInfos = () => {
 function putOnBoard(cardNode) {
     // if (!pickedCardUID) {
         pickedCardUID = cardNode.id;
-        console.log(pickedCardUID);
+        let playedCardID = cardNode.getAttribute("data-ID");
+        console.clear();
+        //console.log(pickedCardUID);
+        console.log(playedCardID);
 
         let formData = new FormData();
         formData.append("PLAY", "PLAY");
@@ -153,10 +159,20 @@ function putOnBoard(cardNode) {
                     console.clear();
                     console.log(data);
                 }
+                else {
+                    console.clear();
+                    console.log(pickedCardUID);
+                    let formDataCardPlayed = new FormData();
+                    formDataCardPlayed.append("cardPlayed", playedCardID);
+                    fetch("ajax.php", { 
+                        method: "POST", 
+                        body: formDataCardPlayed
+                    })
+                        .then(response => response.json())
+                        .then(data => {})    
+                }
             })    
         updateGameInfos();
-        pickedCardUID = null;
-        //console.clear();
     // }
 }
 
@@ -207,8 +223,7 @@ function useHeroPower() {
         body: formData
     })
         .then(response => response.json())
-        .then(data => {
-        })    
+        .then(data => {})    
     updateGameInfos();
     console.clear();
     console.log("Hero Power used !");
@@ -222,8 +237,7 @@ function endTurn() {
         body: formData
     })
         .then(response => response.json())
-        .then(data => {
-        })    
+        .then(data => {})    
     updateGameInfos();
 }
 

@@ -14,7 +14,6 @@ export default function getCard(cardInfos) {
         if (MECHANICS[0].startsWith("Battlecry")) {
             cardImg = "assets/cards/battlecry.png";
             cardType = "battlecry";
-
         }
         else if (MECHANICS[0].startsWith("Charge")) {
             cardImg = "assets/cards/charge.png";
@@ -37,6 +36,7 @@ export default function getCard(cardInfos) {
     let cardNode = document.createElement("div");
     cardNode.className = `card ${cardType}`;
     cardNode.id = `${UID}`;
+    cardNode.setAttribute("data-ID", ID);
 
     cardNode.innerHTML = `        
         <div class="card-img-container" id="${UID}">
