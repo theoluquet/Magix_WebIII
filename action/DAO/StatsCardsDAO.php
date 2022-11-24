@@ -31,13 +31,7 @@
             $connection = Connection::getConnection();
 
             $statementGetStats = $connection->prepare
-            ("SELECT
-            (
-                cardID,
-                times_played,
-                ((times_played / SUM(times_played)) * 100) AS 'popularity'
-            )
-            FROM played_cards");
+            ("SELECT cardId, times_played, ((times_played / (SELECT SUM(times_played) FROM played_cards) * 100)) AS popularity, (SELECT SUM(times_played) FROM played_cards) AS total_times_played FROM played_cards GROUP BY cardID ORDER BY popularity DESC;");
 
             $statementGetStats->setFetchMode(PDO::FETCH_ASSOC);
             $statementGetStats->execute();

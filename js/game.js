@@ -137,9 +137,8 @@ const initializeGameInfos = () => {
 
     playerHeroClassNode.innerHTML = gameInfos.heroClass;
 
-    let testNode = document.querySelector(".player-data");
-    testNode.style.background = `url(${CLASSPICS[gameInfos.heroClass].path}) no-repeat bottom`;
-    // testNode.style.backgroundSize = "contain";
+    let playerAvatarNode = document.querySelector(".player-data");
+    playerAvatarNode.style.background = `url(${CLASSPICS[gameInfos.heroClass].path}) no-repeat bottom`;
 }
 
 
@@ -149,11 +148,6 @@ const initializeGameInfos = () => {
 function putOnBoard(cardNode) {
     // if (!pickedCardUID) {
         pickedCardUID = cardNode.id;
-        let playedCardID = cardNode.getAttribute("data-ID");
-        console.clear();
-        //console.log(pickedCardUID);
-        console.log(playedCardID);
-
         let formData = new FormData();
         formData.append("PLAY", "PLAY");
         formData.append("uid", pickedCardUID);
@@ -168,16 +162,17 @@ function putOnBoard(cardNode) {
                     console.log(data);
                 }
                 else {
+                    let playedCardID = cardNode.getAttribute("data-ID");
                     console.clear();
                     console.log(pickedCardUID);
-                    // let formDataCardPlayed = new FormData();
-                    // formDataCardPlayed.append("cardPlayed", playedCardID);
-                    // fetch("ajax.php", { 
-                    //     method: "POST", 
-                    //     body: formDataCardPlayed
-                    // })
-                    //     .then(response => response.json())
-                    //     .then(data => {})    
+                    let formDataCardPlayed = new FormData();
+                    formDataCardPlayed.append("cardPlayed", playedCardID);
+                    fetch("ajax.php", { 
+                        method: "POST", 
+                        body: formDataCardPlayed
+                    })
+                        .then(response => response.json())
+                        .then(data => {})    
                 }
             })    
         updateGameInfos();
@@ -191,7 +186,7 @@ function beginAttack(cardNode) {
 
 function attackTarget(targetNode) {
     console.log("attackTarget()");
-    if (attackInitiated) {  
+    if (attackInitiated == true) {  
         console.log("attackInitiated");  
         targetUID = targetNode.id;
         //console.clear();
@@ -203,6 +198,7 @@ function attackTarget(targetNode) {
         formData.append("ATTACK", "ATTACK");
         formData.append("uid", pickedCardUID);
         formData.append("targetuid", targetUID);
+        console.log(formData)
         fetch("ajax.php", { 
             method: "POST", 
             body: formData
@@ -211,13 +207,16 @@ function attackTarget(targetNode) {
             .then(data => {
                 if (typeof data !== "object") {
                     //console.clear();
-                    console.log("attaque ratée");
+                    console.log("Attaque ratée");
                     console.log(data);
-                    console.log("attaque ratée");
+                }
+                else {
+                    console.log("Attaque réussie");
+                    console.log(data);
                 }
             })
-        pickedCardUID = null;    
-        targetUID = null;
+        // pickedCardUID = null;    
+        // targetUID = null;
         attackInitiated = false;
         updateGameInfos();
     }
@@ -310,7 +309,7 @@ window.addEventListener("load", () => {
     let opponentInfoNodes = opponentInfoNode.childNodes;
     opponentInfoNodes.forEach(node => {
             node.id = 0;
-            node.addEventListener("click", function(){attackTarget(opponentInfoNode)});
+            node.addEventListener("click", function(){attackTarget(node)});
         });
     opponentNameNode = document.querySelector(".opponent-name");
     opponentHeroClassNode = document.querySelector(".opponent-hero-class");

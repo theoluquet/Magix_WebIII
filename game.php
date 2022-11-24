@@ -10,7 +10,7 @@ require_once("partial/header.php");
 
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <title>GAME OF MAGIX</title>
@@ -22,12 +22,18 @@ require_once("partial/header.php");
 <body>
     <div class="game-container">
         <div class="opponent-info">
-            <div class="opponent-deck">30 cards</div>
-            <div class="opponent-hp">30 HP</div>
             <div class="opponent-avatar">IMG</div>
-            <div class="opponent-name">Name</div>
-            <div class="opponent-hero-class">HeroClass</div>
-            <div class="opponent-mp">10 MP</div>
+            <div class="opponent-data">
+                <div class="opponent-data1">
+                    <div class="opponent-hp">30 HP</div>
+                    <div class="opponent-mp">10 MP</div>
+                    <div class="opponent-deck">30 cards</div>
+                </div>
+                <div class="opponent-data2">
+                    <div class="opponent-name">Name</div>
+                    <div class="opponent-hero-class">HeroClass</div>
+                </div>
+            </div>
         </div>
 
         <div class="game-board">
@@ -47,10 +53,10 @@ require_once("partial/header.php");
             <div class="player-data">
                 <div class="player-name"><?= $_SESSION["username"] ?></div>
                 <div class="player-hero-class">HeroClass</div>
+                <div class="player-avatar"></div>
                 <div class="player-hp">30 HP</div>
                 <div class="player-mp">10 MP</div>
                 <div class="player-deck">30 cards</div>
-                <div class="player-avatar"></div>
             </div>
         </div>
     </div>

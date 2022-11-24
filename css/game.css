@@ -8,8 +8,9 @@
 * {
     margin: 0;
     padding: 0;
-    color: white;
-    overflow: hidden;    
+    color: whitesmoke;
+    overflow: hidden;
+    font-family: 'ReggaeOne';    
 }
 
 .game-container {
@@ -26,7 +27,30 @@
     height: 10%;
     border-bottom: 3px solid black;
     display: flex;
+    justify-content: start;
+}
+
+.opponent-avatar {
+    height: 100%;
+    width: fit-content;
+}
+
+.opponent-avatar > img {
+    height: 100%;
+    width: fit-content;
+    transform: scaleX(-1);
+}
+
+.opponent-data {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
+}
+
+.opponent-data > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .game-board {
@@ -108,67 +132,105 @@
     /* width: 180px; */
     height: var(--card-height);
     position: relative;
+    overflow: visible;
+    border-radius: 10px;
+    border: ridge rgb(100, 16, 16) 2px;
     margin-left: 10px;
     margin-right: 10px;
-    background-color: rgb(231, 209, 107);
+    padding: 10px;
+    background-color: rgb(211, 187, 82);
     flex-basis: var(--card-width);
     flex-shrink: 0;
     flex-grow: 0;
 }
 
+.card-img {
+    border-bottom: inset rgb(100, 16, 16) 1px;
+    margin: 0;
+    padding: 0;
+}
+
+.card-mechanic {
+    font-family: 'RocknRollOne';
+    font-size: 0.7rem;
+    font-weight: 200;
+    color: rgb(121, 28, 28);
+}
+
+.card-dedicated {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    position: absolute;
+    bottom: 1px;
+    font-family: 'RocknRollOne';
+    font-size: 0.5rem;
+    font-weight: 150;
+    color: rgb(248, 243, 201);
+    text-align: center;
+    text-justify: center;
+    font-style: italic;
+}
+
 .card-stats {
     width: var(--card-width);
     position: absolute;
-    bottom: 10px;
-    display: flex;
-    flex-direction: row;
+    top: -20px;
+    right: -110px;
+    /* display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;    
+    align-items: space;     */
 }
 
 .card-stats > div {
     padding-left: 10px;
     padding-right: 10px;
-}
-
-.card-cost-mp {
     width: 40px;
     height: fit-content;
     text-align: center;
     text-justify: center;
     font-weight: bold;
     padding: 10px;
-    background-image: url("../assets/mp.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top;
 }
 
-.card-attack {
-    width: 40px;
-    height: fit-content;
-    text-align: center;
-    text-justify: center;
-    font-weight: bold;
-    padding: 10px;
+
+.card-attack {    
     background-image: url("../assets/atk.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: top;
+    background-position: bottom;
+}
+
+.card-cost-mp {    
+    background-image: url("../assets/mp.png");    
 }
 
 .card-hp {
-    width: 40px;
-    height: fit-content;
-    text-align: center;
-    text-justify: center;
-    font-weight: bold;
-    padding: 10px;
+    width: 10px;    
     background-image: url("../assets/hp.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-size:auto;
 }
 
 
 
+@font-face {
+    font-family: "Triforce";
+    src: url("../assets/fonts/Triforce.ttf");
+}
+
+@font-face {
+    font-family: "AncientHylian";
+    src: url("../assets/fonts/AncientHylian.otf");
+}
+
+@font-face {
+    font-family: "ReggaeOne";
+    src: url("../assets/fonts/ReggaeOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: "RocknRollOne";
+    src: url("../assets/fonts/RocknRollOne-Regular.ttf");
+}

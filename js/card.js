@@ -38,16 +38,16 @@ export default function getCard(cardInfos) {
     cardNode.id = `${UID}`;
     cardNode.setAttribute("data-ID", ID);
 
-    cardNode.innerHTML = `        
+    cardNode.innerHTML = `
+        <div class="card-stats" id="${UID}">
+            <div class="card-attack" id="${UID}">${ATK}</div>
+            <div class="card-hp" id="${UID}">${HP}</div>
+            <div class="card-cost-mp" id="${UID}">${COST}</div>
+        </div>        
         <div class="card-img-container" id="${UID}">
             <img src="${cardImg}" class="card-img" id="${UID}">
         </div>
-        <div class="card-mechanic" id="${UID}">${MECHANICS}</div>
-        <div class="card-stats" id="${UID}">
-        <div class="card-attack" id="${UID}">${ATK}</div>
-        <div class="card-hp" id="${UID}">${HP}</div>
-            <div class="card-cost-mp" id="${UID}">${COST}</div>
-        </div>
+        <div class="card-mechanic" id="${UID}">${MECHANICS}</div>        
         <div class="card-dedicated" id="${UID}">${DEDICATED}</div>
         `;
         

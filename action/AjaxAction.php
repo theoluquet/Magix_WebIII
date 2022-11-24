@@ -14,12 +14,12 @@
             $gameParams["key"] = $_SESSION["key"];
 
             // Update game state
-            if (!empty($_POST["game-update"]) && ($_POST["game-update"] = "true")) {
+            if (isset($_POST["game-update"]) && ($_POST["game-update"] = "true")) {
                 $result = parent::callAPI("games/state", $gameParams);
             }
 
             // Put a card on the board
-            if (!empty($_POST["PLAY"]) && !empty($_POST["uid"])) {
+            if (isset($_POST["PLAY"]) && isset($_POST["uid"])) {
 
                 $gameParams["type"] = $_POST["PLAY"];
                 $gameParams["uid"] = $_POST["uid"];
@@ -27,13 +27,13 @@
             }
 
             // Register played card in the database
-            if (!empty($_POST["cardPlayed"])) {
+            if (isset($_POST["cardPlayed"])) {
                 $result = StatsCardsDAO::cardPlayed($_POST["cardPlayed"]);                
             }
 
 
             // Attack
-            if (!empty($_POST["ATTACK"]) && !empty($_POST["uid"]) && !empty($_POST["targetuid"])) {
+            if (isset($_POST["ATTACK"]) && isset($_POST["uid"])) {
 
                 $gameParams["type"] = $_POST["ATTACK"];
                 $gameParams["uid"] = $_POST["uid"];
@@ -42,24 +42,24 @@
             }
 
             // End Turn
-            if (!empty($_POST["END_TURN"])) {
+            if (isset($_POST["END_TURN"])) {
                 $gameParams["type"] = "END_TURN";
                 $result = parent::callAPI("games/action", $gameParams);
             }
 
             // Hero Power
-            if (!empty($_POST["HERO_POWER"])) {
+            if (isset($_POST["HERO_POWER"])) {
                 $gameParams["type"] = "HERO_POWER";
                 $result = parent::callAPI("games/action", $gameParams);
             }
             
             // Reset the cards statistis in the database
-            if (!empty($_POST["resetStats"])) {
+            if (isset($_POST["resetStats"])) {
                 $result = StatsCardsDAO::resetStats();                
             }
 
             // getStats
-            if (!empty($_POST["getStats"])) {
+            if (isset($_POST["getStats"])) {
                 $result = StatsCardsDAO::getStats();                
             }
 
