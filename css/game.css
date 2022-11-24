@@ -53,6 +53,17 @@
     justify-content: space-around;
 }
 
+
+.hero-power, .end-turn {
+    padding: 10px;
+    overflow: visible;
+    background: url(../assets/button.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
 .game-board {
     width: 100%;
     height: 60%;    

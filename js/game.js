@@ -48,150 +48,53 @@ let gameBoardNode;
 let playerBoardNode;
 let opponentBoardNode;
 
-const updateGameInfos = () => {
-    timerNode.innerHTML = gameInfos.remainingTurnTime;
-    if (gameInfos.yourTurn == true) {
-        playerInfoNode.style.background = isYourTurnBackground;
-        opponentInfoNode.style.background = isNotYourTurnBackground;
-    } else {
-        playerInfoNode.style.background = isNotYourTurnBackground;
-        opponentInfoNode.style.background = isYourTurnBackground;
-    }
-
-    opponentHpNode.innerHTML = gameInfos.opponent.hp;
-    opponentMpNode.innerHTML = gameInfos.opponent.mp;
-    opponentDeckNode.innerHTML = gameInfos.opponent.handSize;
-
-    playerHpNode.innerHTML = gameInfos.hp;
-    playerMpNode.innerHTML = gameInfos.mp;
-    playerDeckNode.innerHTML = gameInfos.handSize;
-
-    
-    while (opponentBoardNode.hasChildNodes()) {
-        opponentBoardNode.removeChild(opponentBoardNode.firstChild);
-      }
-
-    let opponentBoardCards = gameInfos.opponent.board;
-
-    for (let i = 0; i < opponentBoardCards.length; i++) {
-        let card = getCard(opponentBoardCards[i])
-        let cardChildNodes = card.childNodes;
-        cardChildNodes.forEach(node => {
-            node.addEventListener("click", function(){attackTarget(card)});
-        });
-        
-        opponentBoardNode.append(card);       
-    }
-
-
-    while (playerBoardNode.hasChildNodes()) {
-        playerBoardNode.removeChild(playerBoardNode.firstChild);
-      }
-
-    let playerBoardCards = gameInfos.board;
-
-    for (let i = 0; i < playerBoardCards.length; i++) {
-        let card = getCard(playerBoardCards[i])
-        let cardChildNodes = card.childNodes;
-        cardChildNodes.forEach(node => {
-            node.addEventListener("click", function(){beginAttack(card)});
-        });        
-        playerBoardNode.append(card);       
-    }
-
-
-    while (playerHandNode.hasChildNodes()) {
-        playerHandNode.removeChild(playerHandNode.firstChild);
-      }
-
-    let playerHandCards = gameInfos.hand;
-    
-    for (let i = 0; i < playerHandCards.length; i++) {
-        // let playerHandCardNode = document.createElement("div");
-        // playerHandCardNode.classList.add("player-hand-card");
-        // playerHandCardNode.innerHTML = getCard(playerHandCards[i]);
-        let card = getCard(playerHandCards[i]);
-        /////////////////////////////////////////////
-        //card.setAttribute(data-cardID);
-        ////////////////////////////////////////////
-        let cardChildNodes = card.childNodes;
-        cardChildNodes.forEach(node => {
-            node.addEventListener("click", function(){putOnBoard(card)});
-        });
-        playerHandNode.append(card);       
-    }    
-}
-
-const initializeGameInfos = () => {
-
-    // localStorage.setItem("playerName", "test");
-    let name1 = localStorage.getItem("playerName");
-    console.log(name1);
-    console.log(localStorage.getItem("playerName"));
-
-    opponentNameNode.innerHTML = gameInfos.opponent.username;
-    opponentHeroClassNode.innerHTML = gameInfos.opponent.heroClass;
-    opponentAvatarNode.innerHTML = `        
-        <img src="${CLASSPICS[gameInfos.opponent.heroClass].path}" alt="${gameInfos.opponent.heroClass}">
-        `;
-
-    playerHeroClassNode.innerHTML = gameInfos.heroClass;
-
-    let playerAvatarNode = document.querySelector(".player-data");
-    playerAvatarNode.style.background = `url(${CLASSPICS[gameInfos.heroClass].path}) no-repeat bottom`;
-}
-
-
-
 
 
 function putOnBoard(cardNode) {
-    // if (!pickedCardUID) {
-        pickedCardUID = cardNode.id;
-        let formData = new FormData();
-        formData.append("PLAY", "PLAY");
-        formData.append("uid", pickedCardUID);
-        fetch("ajax.php", { 
-            method: "POST", 
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (typeof data !== "object") {
-                    console.clear();
-                    console.log(data);
-                }
-                else {
-                    let playedCardID = cardNode.getAttribute("data-ID");
-                    console.clear();
-                    console.log(pickedCardUID);
-                    let formDataCardPlayed = new FormData();
-                    formDataCardPlayed.append("cardPlayed", playedCardID);
-                    fetch("ajax.php", { 
-                        method: "POST", 
-                        body: formDataCardPlayed
-                    })
-                        .then(response => response.json())
-                        .then(data => {})    
-                }
-            })    
-        updateGameInfos();
-    // }
+    pickedCardUID = cardNode.id;
+    let formData = new FormData();
+    formData.append("PLAY", "PLAY");
+    formData.append("uid", pickedCardUID);
+    fetch("ajax.php", { 
+        method: "POST", 
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (typeof data !== "object") {
+                console.clear();
+                console.log(data);
+            }
+            else {
+                let playedCardID = cardNode.getAttribute("data-ID");
+                let formDataCardPlayed = new FormData();
+                formDataCardPlayed.append("cardPlayed", playedCardID);
+                fetch("ajax.php", { 
+                    method: "POST", 
+                    body: formDataCardPlayed
+                })
+                    .then(response => response.json())
+                    .then(data => {})    
+            }
+        })    
+    //updateGameInfos();    
 }
+
 
 function beginAttack(cardNode) {
     pickedCardUID = cardNode.id;
     attackInitiated = true;
 }
 
+
 function attackTarget(targetNode) {
-    console.log("attackTarget()");
+    
     if (attackInitiated == true) {  
-        console.log("attackInitiated");  
+        // console.log("attackInitiated");  
         targetUID = targetNode.id;
         //console.clear();
-        console.log("Picked : " + pickedCardUID);
-        console.log("Target : " + targetUID);
+        // console.log("Picked : " + pickedCardUID);
+        // console.log("Target : " + targetUID);
 
         // APPEL ATTAQUE
         let formData = new FormData();
@@ -215,10 +118,10 @@ function attackTarget(targetNode) {
                     console.log(data);
                 }
             })
-        // pickedCardUID = null;    
-        // targetUID = null;
+        pickedCardUID = null;    
+        targetUID = null;
         attackInitiated = false;
-        updateGameInfos();
+        //updateGameInfos();
     }
 }
 
@@ -231,7 +134,7 @@ function useHeroPower() {
         body: formData
     })
         .then(response => response.json())
-        .then(data => {})    
+        .then(data => {displayMessage(data);})    
     updateGameInfos();
     console.clear();
     console.log("Hero Power used !");
@@ -248,18 +151,19 @@ function useHeroPower() {
     //         console.log(data);
     //     })
         
-    let formDataGetStats = new FormData();
-    formDataGetStats.append("getStats", "getStats");
-    fetch("ajax.php", { 
-        method: "POST", 
-        body: formDataGetStats
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.clear();
-            console.log(data);
-        }) 
+    // let formDataGetStats = new FormData();
+    // formDataGetStats.append("getStats", "getStats");
+    // fetch("ajax.php", { 
+    //     method: "POST", 
+    //     body: formDataGetStats
+    // })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.clear();
+    //         console.log(data);
+    //     }) 
 }
+
 
 function endTurn() {
     let formData = new FormData();
@@ -269,9 +173,155 @@ function endTurn() {
         body: formData
     })
         .then(response => response.json())
-        .then(data => {})    
-    updateGameInfos();
+        .then(data => {displayMessage(data);})    
+    //updateGameInfos();
 }
+
+
+function displayMessage(data) {
+    let message = "";
+    switch(data) {
+        case "WAITING":
+            message = "Waiting for the opponent ...";
+            break;
+
+        case "LAST_GAME_WON":
+            message = "Victory !";
+            break;
+        
+        case "LAST_GAME_LOST":
+            message = "Waiting for the opponent ...";
+            break;
+
+        case "INVALID_ACTION":
+            message = "You can't do that.";
+            break;
+
+        case "NOT_ENOUGH_ENERGY":
+            message = "Insufficient MP !";
+            break;
+        
+        case "BOARD_IS_FULL":
+            message = "The board is already full !";
+            break;
+
+        case "CARD_NOT_IN_HAND":
+            message = "The card isn't in your hand.";
+            break;
+
+        case "CARD_IS_SLEEPING":
+            message = "Wait for the next turn.";
+            break;
+
+        case "MUST_ATTACK_TAUNT_FIRST":
+            message = "You must attack the Taunt card first.";
+            break;
+
+        case "OPPONENT_CARD_HAS_STEALTH":
+            message = "Wait until it lost its stealth.";
+            break;
+
+        case "HERO_POWER_ALREADY_USED":
+            message = "You already used your Hero Power during this turn.";
+            break;
+    }
+
+    let messageNode = document.createElement("div");
+    messageNode.className = "message";
+    messageNode.innerHTML = message;
+    gameBoardNode.append(messageNode);
+}
+
+
+const updateGameInfos = () => {
+    timerNode.innerHTML = gameInfos.remainingTurnTime;
+    
+    if (gameInfos.yourTurn == true) {
+        playerInfoNode.style.background = isYourTurnBackground;
+        opponentInfoNode.style.background = isNotYourTurnBackground;
+    }
+    else {
+        playerInfoNode.style.background = isNotYourTurnBackground;
+        opponentInfoNode.style.background = isYourTurnBackground;
+    }
+
+    opponentHpNode.innerHTML = gameInfos.opponent.hp;
+    opponentMpNode.innerHTML = gameInfos.opponent.mp;
+    opponentDeckNode.innerHTML = gameInfos.opponent.handSize;
+
+    playerHpNode.innerHTML = gameInfos.hp;
+    playerMpNode.innerHTML = gameInfos.mp;
+    playerDeckNode.innerHTML = gameInfos.handSize;
+
+    
+    while (opponentBoardNode.hasChildNodes()) {
+        opponentBoardNode.removeChild(opponentBoardNode.firstChild);
+      }
+    let opponentBoardCards = gameInfos.opponent.board;
+    for (let i = 0; i < opponentBoardCards.length; i++) {
+        let card = getCard(opponentBoardCards[i])
+        let cardChildNodes = card.childNodes;
+        cardChildNodes.forEach(node => {
+            node.addEventListener("click", function(){attackTarget(card)});
+        });        
+        opponentBoardNode.append(card);       
+    }
+
+
+    while (playerBoardNode.hasChildNodes()) {
+        playerBoardNode.removeChild(playerBoardNode.firstChild);
+      }
+    let playerBoardCards = gameInfos.board;
+    for (let i = 0; i < playerBoardCards.length; i++) {
+        let card = getCard(playerBoardCards[i])
+        let cardChildNodes = card.childNodes;
+        cardChildNodes.forEach(node => {
+            node.addEventListener("click", function(){beginAttack(card)});
+        });        
+        playerBoardNode.append(card);       
+    }
+
+
+    while (playerHandNode.hasChildNodes()) {
+        playerHandNode.removeChild(playerHandNode.firstChild);
+      }
+    let playerHandCards = gameInfos.hand;    
+    for (let i = 0; i < playerHandCards.length; i++) {
+        // let playerHandCardNode = document.createElement("div");
+        // playerHandCardNode.classList.add("player-hand-card");
+        // playerHandCardNode.innerHTML = getCard(playerHandCards[i]);
+        let card = getCard(playerHandCards[i]);
+        /////////////////////////////////////////////
+        //card.setAttribute(data-cardID);
+        ////////////////////////////////////////////
+        let cardChildNodes = card.childNodes;
+        cardChildNodes.forEach(node => {
+            node.addEventListener("click", function(){putOnBoard(card)});
+        });
+        playerHandNode.append(card);       
+    }    
+}
+
+
+const initializeGameInfos = () => {
+
+    // localStorage.setItem("playerName", "test");
+    let name1 = localStorage.getItem("playerName");
+    console.log(name1);
+    console.log(localStorage.getItem("playerName"));
+
+    opponentNameNode.innerHTML = gameInfos.opponent.username;
+    opponentHeroClassNode.innerHTML = gameInfos.opponent.heroClass;
+    opponentAvatarNode.innerHTML = `        
+        <img src="${CLASSPICS[gameInfos.opponent.heroClass].path}" alt="${gameInfos.opponent.heroClass}">
+        `;
+
+    playerHeroClassNode.innerHTML = gameInfos.heroClass;
+
+    let playerAvatarNode = document.querySelector(".player-data");
+    playerAvatarNode.style.background = `url(${CLASSPICS[gameInfos.heroClass].path}) no-repeat bottom`;
+}
+
 
 const state = () => {
 
@@ -287,17 +337,21 @@ const state = () => {
             //console.log(data); // contient les cartes/état du jeu.        
             gameInfos = data;
 
-            if (gameInfos != "WAITING") {
+            if (typeof gameInfos !== "object") {
+                displayMessage(gameInfos);
+                console.log(gameInfos);
+            }
+            else {
                 if (!gameInfosInitialized) {
                     initializeGameInfos();
-                    gameInfosInitialized = true;
+                    gameInfosInitialized = true;                    
                 }
-                updateGameInfos();
-            }            
-
+                updateGameInfos();              
+            }  
             setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
         })
 }
+
 
 window.addEventListener("load", () => {
     
@@ -336,5 +390,3 @@ window.addEventListener("load", () => {
 
     setTimeout(state, 1000); // Appel initial (attendre 1 seconde)
 });
-
-
