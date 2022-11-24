@@ -20,16 +20,22 @@
                     $hasConnectionError = true;
                     }
                 else {
-                // Pour voir les informations retournées :
-                //var_dump($result);exit;
-                $key = $result->key;
-                $_SESSION["key"] = $key;
-                $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
-                $_SESSION["username"] = $data["username"];
-                header("location:lobby.php");
-                exit;
+                    $key = $result->key;
+                    $_SESSION["key"] = $key;
+                    $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
+                    $_SESSION["username"] = $data["username"];
+                    $playerName = $data["username"];
+                    header("location:lobby.php");
+                    exit;
                 }
             }
             return compact("hasConnectionError", "key");
         }
     }
+?>
+
+<script type="text/JavaScript">
+    console.log("script");
+    localStorage.clear();
+    localStorage.setItem("playerName", <?php $playerName ?>);
+</script>

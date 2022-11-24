@@ -18,6 +18,7 @@ let isNotYourTurnBackground = "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0
 
 let pickedCardUID = null;
 let targetUID = null;
+let attackInitiated = false;
 
 let gameInfos;
 let gameInfosInitialized = false;
@@ -33,6 +34,7 @@ let opponentMpNode;
 let opponentDeckNode;
 
 let playerInfoNode;
+let playerNameNode;
 let playerHeroClassNode;
 let playerAvatarNode;
 let playerHpNode;
@@ -121,6 +123,12 @@ const updateGameInfos = () => {
 }
 
 const initializeGameInfos = () => {
+
+    // localStorage.setItem("playerName", "test");
+    let name1 = localStorage.getItem("playerName");
+    console.log(name1);
+    console.log(localStorage.getItem("playerName"));
+
     opponentNameNode.innerHTML = gameInfos.opponent.username;
     opponentHeroClassNode.innerHTML = gameInfos.opponent.heroClass;
     opponentAvatarNode.innerHTML = `        
@@ -162,14 +170,14 @@ function putOnBoard(cardNode) {
                 else {
                     console.clear();
                     console.log(pickedCardUID);
-                    let formDataCardPlayed = new FormData();
-                    formDataCardPlayed.append("cardPlayed", playedCardID);
-                    fetch("ajax.php", { 
-                        method: "POST", 
-                        body: formDataCardPlayed
-                    })
-                        .then(response => response.json())
-                        .then(data => {})    
+                    // let formDataCardPlayed = new FormData();
+                    // formDataCardPlayed.append("cardPlayed", playedCardID);
+                    // fetch("ajax.php", { 
+                    //     method: "POST", 
+                    //     body: formDataCardPlayed
+                    // })
+                    //     .then(response => response.json())
+                    //     .then(data => {})    
                 }
             })    
         updateGameInfos();
@@ -178,40 +186,41 @@ function putOnBoard(cardNode) {
 
 function beginAttack(cardNode) {
     pickedCardUID = cardNode.id;
-
-
-
-    //console.clear();
-    console.log("Picked : " + pickedCardUID);
+    attackInitiated = true;
 }
 
-function attackTarget(targetCardNode) {
-    // if (pickedCardUID && !targetUID) {
-    targetUID = targetCardNode.id;
-    //console.clear();
-    console.log("Picked : " + pickedCardUID);
-    console.log("Target : " + targetUID);
+function attackTarget(targetNode) {
+    console.log("attackTarget()");
+    if (attackInitiated) {  
+        console.log("attackInitiated");  
+        targetUID = targetNode.id;
+        //console.clear();
+        console.log("Picked : " + pickedCardUID);
+        console.log("Target : " + targetUID);
 
-    // APPEL ATTAQUE
-    let formData = new FormData();
-    formData.append("ATTACK", "ATTACK");
-    formData.append("uid", pickedCardUID);
-    formData.append("targetuid", targetUID);
-    fetch("ajax.php", { 
-        method: "POST", 
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (typeof data !== "object") {
-                console.clear();
-                console.log(data);
-            }
-        })    
-    targetUID = null;
-    updateGameInfos();
-
-    // }
+        // APPEL ATTAQUE
+        let formData = new FormData();
+        formData.append("ATTACK", "ATTACK");
+        formData.append("uid", pickedCardUID);
+        formData.append("targetuid", targetUID);
+        fetch("ajax.php", { 
+            method: "POST", 
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (typeof data !== "object") {
+                    //console.clear();
+                    console.log("attaque ratée");
+                    console.log(data);
+                    console.log("attaque ratée");
+                }
+            })
+        pickedCardUID = null;    
+        targetUID = null;
+        attackInitiated = false;
+        updateGameInfos();
+    }
 }
 
 
@@ -296,6 +305,13 @@ window.addEventListener("load", () => {
     timerNode = document.querySelector(".timer");
 
     opponentInfoNode = document.querySelector(".opponent-info");
+    opponentInfoNode.id = 0;
+    opponentInfoNode.addEventListener("click", function(){attackTarget(opponentInfoNode)});
+    let opponentInfoNodes = opponentInfoNode.childNodes;
+    opponentInfoNodes.forEach(node => {
+            node.id = 0;
+            node.addEventListener("click", function(){attackTarget(opponentInfoNode)});
+        });
     opponentNameNode = document.querySelector(".opponent-name");
     opponentHeroClassNode = document.querySelector(".opponent-hero-class");
     opponentAvatarNode = document.querySelector(".opponent-avatar");

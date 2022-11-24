@@ -13,7 +13,7 @@ _ Spectate
 _ Deck builder
 
 LOGIN :
-_ Message d'erreur
+_ Error message
 
 
 CARD DATA (PGSQL) :
