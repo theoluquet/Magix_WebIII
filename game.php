@@ -34,6 +34,14 @@ require_once("partial/header.php");
                     <div class="opponent-hero-class">HeroClass</div>
                 </div>
             </div>
+            <div class="message-area">
+
+            </div>
+            <div class="player-commands">
+                <div class="timer">50sec</div>
+                <div class="end-turn">End Turn</div>
+                <div class="hero-power">Hero Power</div>
+            </div>
         </div>
 
         <div class="game-board">
@@ -41,22 +49,20 @@ require_once("partial/header.php");
             <div class="player-board"></div>
         </div>
 
-        <div class="player-info">
-            <div class="player-commands">
-                <div class="hero-power">Hero Power</div>
-                <div class="timer">50sec</div>
-                <div class="end-turn">End Turn</div>
-            </div>
+        <div class="player-info">            
             <div class="player-hand-container">
                 <div class="player-hand"></div>
             </div>
-            <div class="player-data">
-                <div class="player-name"><?= $_SESSION["username"] ?></div>
-                <div class="player-hero-class">HeroClass</div>
-                <div class="player-avatar"></div>
-                <div class="player-hp">30 HP</div>
-                <div class="player-mp">10 MP</div>
-                <div class="player-deck">30 cards</div>
+            <div class="player-data">   
+            <div class="player-data1">
+                    <div class="player-deck">30 cards</div>
+                    <div class="player-mp">10 MP</div>
+                    <div class="player-hp">30 HP</div>
+                </div>             
+                <div class="player-data2">
+                    <div class="player-name"><?= $_SESSION["username"] ?></div>
+                    <div class="player-hero-class">HeroClass</div>
+                </div>                
             </div>
         </div>
     </div>

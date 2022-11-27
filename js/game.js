@@ -247,11 +247,11 @@ const updateGameInfos = () => {
 
     opponentHpNode.innerHTML = gameInfos.opponent.hp;
     opponentMpNode.innerHTML = gameInfos.opponent.mp;
-    opponentDeckNode.innerHTML = gameInfos.opponent.handSize;
+    opponentDeckNode.innerHTML = gameInfos.opponent.remainingCardsCount;
 
     playerHpNode.innerHTML = gameInfos.hp;
     playerMpNode.innerHTML = gameInfos.mp;
-    playerDeckNode.innerHTML = gameInfos.handSize;
+    playerDeckNode.innerHTML = gameInfos.hand.length;
 
     
     while (opponentBoardNode.hasChildNodes()) {
@@ -344,7 +344,8 @@ const state = () => {
             else {
                 if (!gameInfosInitialized) {
                     initializeGameInfos();
-                    gameInfosInitialized = true;                    
+                    gameInfosInitialized = true;
+                    console.log(gameInfos);                    
                 }
                 updateGameInfos();              
             }  
@@ -374,7 +375,6 @@ window.addEventListener("load", () => {
 
     playerInfoNode = document.querySelector(".player-info");
     playerHeroClassNode = document.querySelector(".player-hero-class");
-    playerAvatarNode = document.querySelector(".player-avatar");
     playerHpNode = document.querySelector(".player-hp");
     playerMpNode = document.querySelector(".player-mp");
     playerDeckNode = document.querySelector(".player-deck");
