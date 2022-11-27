@@ -326,11 +326,13 @@ const state = () => {
         body: formData
     })
         .then(response => response.json())
-        .then(data => {
-            //console.log(data); // contient les cartes/état du jeu.        
+        .then(data => {       
             gameInfos = data;
 
-            if (typeof gameInfos !== "object") {
+            if (gameInfos == "WAITING") {
+                console.log(gameInfos);
+            }
+            else if (typeof gameInfos !== "object") {
                 displayMessage(gameInfos);
             }
             else {

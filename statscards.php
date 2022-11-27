@@ -1,10 +1,10 @@
 <?php
-    require_once("action/StatsCardsAction.php");
+    // require_once("action/StatsCardsAction.php");
 
-    $action = new StatsCardsAction();
-    $data = $action->execute();
+    // $action = new StatsCardsAction();
+    // $data = $action->execute();
 
-    require_once("partial/header.php");
+    // require_once("partial/header.php");
 ?>
 
 
@@ -13,17 +13,13 @@
 
 <head>
     <title>Cards Statistics</title>
-    <!-- <script defer src="js/game.js" type="module"></script> -->
+    <script defer src="js/statscards.js" type="module"></script>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="css/statscards.css">
 </head>
 
 <body>
-    <?php
-        foreach ($data as $card) {
-            ?>
-            <div><?= $card["cardid"] ?> / <?= $card["times_played"] ?> / <?= $card["popularity"] ?></div>
-            <?php
-        }
-    ?>
+    <div class="stats-container"></div>
+        <button>Reset statistics</button>
 </body>

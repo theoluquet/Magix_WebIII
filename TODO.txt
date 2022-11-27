@@ -6,21 +6,14 @@ _ CSS clean
 
 LOBBY :
 _ Boutons ?!?
-_ Spectate
 _ Deck builder
 
 LOGIN :
 _ Error message
 
 
-CARD DATA (PGSQL) :
-_ Stats page
-_ Reset button
-
-
 MISC :
     LOCALSTORAGE USERNAME
-✔ _ Blank card ?
 
 
 _ Clean code
@@ -28,6 +21,16 @@ _ Dics file
 _ Clean assets
 _ Comments
 _ Disable zoom
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -43,3 +46,18 @@ CREATE TABLE played_cards (
 DROP TABLE played_cards;
 
 SELECT * FROM played_cards;
+
+
+
+
+
+PHP:
+
+<?php
+    foreach ($data["stats"] as $card) {
+        ?>
+        <div><?= $card["cardid"] ?> / <?= $card["times_played"] ?> / <?= $card["popularity"] ?></div>
+        <div><?= var_dump($data["cards"][$card["cardid"]-1]) ?></div>
+        <?php
+    }        
+    ?>

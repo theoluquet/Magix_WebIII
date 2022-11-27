@@ -1,9 +1,9 @@
 
 <?php
-require_once("action/GameAction.php");
+// require_once("action/GameAction.php");
 
-$action = new GameAction();
-$data = $action->execute();
+// $action = new GameAction();
+// $data = $action->execute();
 
 require_once("partial/header.php");
 ?>
@@ -16,6 +16,7 @@ require_once("partial/header.php");
     <title>GAME OF MAGIX</title>
     <script defer src="js/game.js" type="module"></script>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="css/game.css">
 </head>
 
@@ -39,8 +40,8 @@ require_once("partial/header.php");
             </div>
             <div class="player-commands">
                 <div class="timer"></div>
-                <div class="end-turn"></div>
-                <div class="hero-power"></div>
+                <div class="end-turn">End Turn</div>
+                <div class="hero-power">Hero Power</div>
             </div>
         </div>
 

@@ -9,7 +9,7 @@
         }
 
         protected function executeAction() {
-            $result = "";
+            $result = [];
             $gameParams = [];
             $gameParams["key"] = $_SESSION["key"];
 
@@ -52,18 +52,22 @@
                 $gameParams["type"] = "HERO_POWER";
                 $result = parent::callAPI("games/action", $gameParams);
             }
+
+
+
+
+
+            // Get the cards and their statistics
+            if (isset($_POST["getStats"])) {
+                $result["stats"] = StatsCardsDAO::getStats();
+                $result["cards"] = parent::callAPI("/cards", $gameParams);
+            }
+
             
             // Reset the cards statistis in the database
             if (isset($_POST["resetStats"])) {
                 $result = StatsCardsDAO::resetStats();                
-            }
-
-            // getStats
-            if (isset($_POST["getStats"])) {
-                $result = StatsCardsDAO::getStats();                
-            }
-
-            // if ...
+            }            
 
             return compact("result");
         }

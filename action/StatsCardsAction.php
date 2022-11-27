@@ -9,7 +9,13 @@
         }
 
         protected function executeAction() {
-            $result = StatsCardsDAO::getStats();
+            $result = [];
+            $params = [];
+            $params["key"] = $_SESSION["key"];
+
+
+            $result["stats"] = StatsCardsDAO::getStats();
+            $result["cards"] = parent::callAPI("/cards", $params);
             return $result;
         }
     }
