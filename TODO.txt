@@ -1,10 +1,7 @@
 GAME :
-✔ _ Attaque ennemi ! (targetuid == 0)
 _ Card states [glow] (charge, taunt, confused, stealth, idle != sleeping, not enough MP ...)
-_ Various messages : WAITING, Board full, VICTORY/DEFEAT ... 
 _ Surrender
 _ CSS clean
-_ *Chat (semi-optional)
 
 
 LOBBY :
@@ -27,7 +24,10 @@ MISC :
 
 
 _ Clean code
+_ Dics file
+_ Clean assets
 _ Comments
+_ Disable zoom
 
 
 

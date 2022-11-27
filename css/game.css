@@ -8,9 +8,9 @@
 * {
     margin: 0;
     padding: 0;
-    color: whitesmoke;
     overflow: hidden;
     font-family: 'ReggaeOne';    
+    color: whitesmoke;  
 }
 
 .game-container {
@@ -27,7 +27,9 @@
     height: 10%;
     border-bottom: 3px solid black;
     display: grid;
-    grid-template-columns: 100px 1fr 4fr 3fr;
+    grid-template-columns: 100px 1fr 4fr 3fr;    
+    text-shadow: #000 3px 3px 3px;
+    -webkit-font-smoothing: antialiased;  
 }
 
 .opponent-avatar {
@@ -95,11 +97,35 @@
     padding-bottom: 10px;
 }
 
+.message-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.message {
+    margin: auto;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
 
 .player-commands {
+    font-size: 1.6rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+}
+
+.timer {
+    background: url(../assets/hourglass.png);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 20px;
+    height: fit-content;
+    width: fit-content;
 }
 
 
@@ -184,7 +210,7 @@
     justify-content: space-between;
     font-size: 1.5rem;
     text-shadow: #000 3px 3px 3px;
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;    
 }
 
 .player-data > div {
@@ -293,6 +319,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top;
+    text-shadow: #000 3px 3px 3px;
+    -webkit-font-smoothing: antialiased;
 }
 
 

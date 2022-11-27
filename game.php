@@ -22,25 +22,25 @@ require_once("partial/header.php");
 <body>
     <div class="game-container">
         <div class="opponent-info">
-            <div class="opponent-avatar">IMG</div>
+            <div class="opponent-avatar"></div>
             <div class="opponent-data">
                 <div class="opponent-data1">
-                    <div class="opponent-hp">30 HP</div>
-                    <div class="opponent-mp">10 MP</div>
-                    <div class="opponent-deck">30 cards</div>
+                    <div class="opponent-hp"></div>
+                    <div class="opponent-mp"></div>
+                    <div class="opponent-deck"></div>
                 </div>
                 <div class="opponent-data2">
-                    <div class="opponent-name">Name</div>
-                    <div class="opponent-hero-class">HeroClass</div>
+                    <div class="opponent-name"></div>
+                    <div class="opponent-hero-class"></div>
                 </div>
             </div>
             <div class="message-area">
-
+                <div class="message"></div>
             </div>
             <div class="player-commands">
-                <div class="timer">50sec</div>
-                <div class="end-turn">End Turn</div>
-                <div class="hero-power">Hero Power</div>
+                <div class="timer"></div>
+                <div class="end-turn"></div>
+                <div class="hero-power"></div>
             </div>
         </div>
 
@@ -55,13 +55,13 @@ require_once("partial/header.php");
             </div>
             <div class="player-data">   
             <div class="player-data1">
-                    <div class="player-deck">30 cards</div>
-                    <div class="player-mp">10 MP</div>
-                    <div class="player-hp">30 HP</div>
+                    <div class="player-deck"></div>
+                    <div class="player-mp"></div>
+                    <div class="player-hp"></div>
                 </div>             
                 <div class="player-data2">
-                    <div class="player-name"><?= $_SESSION["username"] ?></div>
-                    <div class="player-hero-class">HeroClass</div>
+                    <div class="player-name"></div>
+                    <div class="player-hero-class"></div>
                 </div>                
             </div>
         </div>

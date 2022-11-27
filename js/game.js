@@ -23,9 +23,11 @@ let attackInitiated = false;
 let gameInfos;
 let gameInfosInitialized = false;
 
+let messageNode;
 let timerNode;
 
 let opponentInfoNode;
+let opponentDataNode;
 let opponentNameNode;
 let opponentHeroClassNode;
 let opponentAvatarNode;
@@ -62,8 +64,7 @@ function putOnBoard(cardNode) {
         .then(response => response.json())
         .then(data => {
             if (typeof data !== "object") {
-                console.clear();
-                console.log(data);
+                displayMessage(data);
             }
             else {
                 let playedCardID = cardNode.getAttribute("data-ID");
@@ -77,7 +78,7 @@ function putOnBoard(cardNode) {
                     .then(data => {})    
             }
         })    
-    //updateGameInfos();    
+    updateGameInfos();    
 }
 
 
@@ -89,19 +90,13 @@ function beginAttack(cardNode) {
 
 function attackTarget(targetNode) {
     
-    if (attackInitiated == true) {  
-        // console.log("attackInitiated");  
+    if (attackInitiated == true) {   
         targetUID = targetNode.id;
-        //console.clear();
-        // console.log("Picked : " + pickedCardUID);
-        // console.log("Target : " + targetUID);
 
-        // APPEL ATTAQUE
         let formData = new FormData();
         formData.append("ATTACK", "ATTACK");
         formData.append("uid", pickedCardUID);
         formData.append("targetuid", targetUID);
-        console.log(formData)
         fetch("ajax.php", { 
             method: "POST", 
             body: formData
@@ -109,9 +104,7 @@ function attackTarget(targetNode) {
             .then(response => response.json())
             .then(data => {
                 if (typeof data !== "object") {
-                    //console.clear();
-                    console.log("Attaque ratée");
-                    console.log(data);
+                    displayMessage(data);
                 }
                 else {
                     console.log("Attaque réussie");
@@ -121,7 +114,7 @@ function attackTarget(targetNode) {
         pickedCardUID = null;    
         targetUID = null;
         attackInitiated = false;
-        //updateGameInfos();
+        updateGameInfos();
     }
 }
 
@@ -134,10 +127,14 @@ function useHeroPower() {
         body: formData
     })
         .then(response => response.json())
-        .then(data => {displayMessage(data);})    
-    updateGameInfos();
-    console.clear();
-    console.log("Hero Power used !");
+        .then(data => {
+            if (typeof data !== "object") {
+                displayMessage(data);
+            }
+            else {
+            }
+        })
+        updateGameInfos();
 
     // let formDataResetStats = new FormData();
     // formDataResetStats.append("resetStats", "resetStats");
@@ -225,11 +222,9 @@ function displayMessage(data) {
             message = "You already used your Hero Power during this turn.";
             break;
     }
-
-    let messageNode = document.createElement("div");
-    messageNode.className = "message";
+    
     messageNode.innerHTML = message;
-    gameBoardNode.append(messageNode);
+    setTimeout(function(){messageNode.innerHTML = ""}, 5000);
 }
 
 
@@ -306,8 +301,6 @@ const updateGameInfos = () => {
 const initializeGameInfos = () => {
 
     // localStorage.setItem("playerName", "test");
-    let name1 = localStorage.getItem("playerName");
-    console.log(name1);
     console.log(localStorage.getItem("playerName"));
 
     opponentNameNode.innerHTML = gameInfos.opponent.username;
@@ -339,13 +332,11 @@ const state = () => {
 
             if (typeof gameInfos !== "object") {
                 displayMessage(gameInfos);
-                console.log(gameInfos);
             }
             else {
                 if (!gameInfosInitialized) {
                     initializeGameInfos();
-                    gameInfosInitialized = true;
-                    console.log(gameInfos);                    
+                    gameInfosInitialized = true;                
                 }
                 updateGameInfos();              
             }  
@@ -359,19 +350,24 @@ window.addEventListener("load", () => {
     timerNode = document.querySelector(".timer");
 
     opponentInfoNode = document.querySelector(".opponent-info");
-    opponentInfoNode.id = 0;
-    opponentInfoNode.addEventListener("click", function(){attackTarget(opponentInfoNode)});
-    let opponentInfoNodes = opponentInfoNode.childNodes;
-    opponentInfoNodes.forEach(node => {
+
+    opponentDataNode = document.querySelector(".opponent-data");
+    opponentDataNode.id = 0;
+    opponentDataNode.addEventListener("click", function(){attackTarget(opponentDataNode)});
+    let opponentDataNodes = opponentDataNode.childNodes;
+    opponentDataNodes.forEach(node => {
             node.id = 0;
             node.addEventListener("click", function(){attackTarget(node)});
         });
+    
     opponentNameNode = document.querySelector(".opponent-name");
     opponentHeroClassNode = document.querySelector(".opponent-hero-class");
     opponentAvatarNode = document.querySelector(".opponent-avatar");
     opponentHpNode = document.querySelector(".opponent-hp");
     opponentMpNode = document.querySelector(".opponent-mp");
     opponentDeckNode = document.querySelector(".opponent-deck");
+
+    messageNode = document.querySelector(".message");
 
     playerInfoNode = document.querySelector(".player-info");
     playerHeroClassNode = document.querySelector(".player-hero-class");
