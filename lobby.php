@@ -3,8 +3,6 @@
 
     $action = new LobbyAction();
     $data = $action->execute();
-
-    require_once("partial/header.php");
 ?>
 
 <!DOCTYPE html>
@@ -12,40 +10,42 @@
 
 <head>
     <title>Lobby Magix</title>
-    <!-- <script defer src=""></script> -->
+    <script defer src="js/lobby.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="css/lobby.css">
 </head>
 
 <body>
-    <h1>LOBBY</h1>
-    <h2>Bienvenue <?= $_SESSION["username"] ?></h2>
-    
-    <div class="play">
-        <a href="?play=true">Play</a>
-    </div>
-    
-    <div class="practice">
-        <a href="?practice=true">Practice</a>
-    </div>
-    
-    <div class="logout">
-        <a href="?logout=true">Logout</a>
-    </div>
-    
+    <iframe class="deck-frame" style="width:1100px;height:1300px;"
+        src="https://magix.apps-de-cours.com/server/#/deck/<?= $_SESSION["key"] ?>">
+    </iframe>
+
+    <div class="welcome">Welcome, <span class="username"><?= $_SESSION["username"] ?></span> !</div>
+
     <div class="chat-frame">
         <iframe style="width:700px;height:240px;"
          src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>">
         </iframe>
     </div>
+
+    <div class="deck menu"></div>
+    <div class="play menu">
+        <a href="?play=true"></a>
+    </div>
+    <div class="practice menu">
+        <a href="?practice=true"></a>
+    </div>
+    <div class="stats menu">
+    <a href="statscards.php"></a>
+    </div>
+    <div class="logout menu">
+        <a href="?logout=true"></a>
+    </div>
+
+    <div class="deck-text description">Open<br>Deck</div>
+    <div class="play-text description">Play</div>
+    <div class="practice-text description">Practice</div>
+    <div class="stats-text description">Cards<br>Stats</div>
+    <div class="logout-text description">Logout</div>
 </body>
-
-<!-- <div class="deck-frame">
-<iframe style="width:800px;height:600px;"
-    src="https://magix.apps-de-cours.com/server/#/deck/<?= $_SESSION["key"] ?>">
-</iframe>
-</div> -->
-
-<?php
-    require_once("partial/footer.php");

@@ -1,12 +1,9 @@
 GAME :
+_ Deck remaining
 _ Card states [glow] (charge, taunt, confused, stealth, idle != sleeping, not enough MP ...)
 _ Surrender
 _ CSS clean
 
-
-LOBBY :
-_ Boutons ?!?
-_ Deck builder
 
 LOGIN :
 _ Error message

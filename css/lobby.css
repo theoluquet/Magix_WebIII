@@ -1,16 +1,6 @@
 :root {
-    --candle-light: rgba(252, 217, 23, 0.8);
-
-
-    --gris-clair: #37465B;
-    --vert-fonce: #08C6AB;
-    --vert-clair: #5AFFE7;
-    --violet: #726EFF;
-    --coins-sections: 10px;
-    --coins-boutons: 25px;
-    --police: 'Chakra Petch', sans-serif;
     width: 100vw;
-    height: 100vh;    
+    height: 100vh;   
     background-color: black;   
 }
 
@@ -18,8 +8,8 @@
     margin: 0;
     padding: 0;
     color: white;
-    overflow: hidden; 
-    /* max-width: 1440px; */
+    overflow: hidden;
+    font-family: 'ReggaeOne';
 }
 
 body {
@@ -35,12 +25,130 @@ body {
     background-size: auto;
 }
 
+.welcome {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 90px;
+    left: 1030px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center; 
+    font-size: 2rem;
+}
+
 .chat-frame {
     width: fit-content;
     height: fit-content;
     position: absolute;
-    top: 250px;
+    top: 240px;
     left: 920px;
     border: none;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.deck {
+    top: 710px;
+    left: 195px;
+    background: url("../assets/deckmenu.png");
+}
+
+.play {
+    top: 710px;
+    left: 845px;
+    background: url("../assets/playpotion.png");
+}
+
+.practice {
+    top: 710px;
+    left: 1015px;
+    background: url("../assets/practicepotion.png");
+}
+
+.stats {
+    top: 710px;
+    left: 1185px;
+    background: url("../assets/statspotion.png");
+}
+
+.logout {
+    top: 710px;
+    left: 1500px;
+    background: url("../assets/logoutpotion.png");
+}
+
+.menu {
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    transition: ease-in-out 150ms;
+    cursor: pointer;
+}
+
+.menu:hover {
+    scale: 1.07;
+    rotate: -15deg;
+}
+
+.description {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 880px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center; 
+    font-size: 2rem;
+}
+
+a {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+}
+
+.deck-text {
+    top: 862px;
+    left: 200px;
+    z-index: 12;
+}
+
+.play-text {    
+    left: 855px;
+}
+
+.practice-text {
+    left: 987px;
+}
+
+.stats-text {
+    top: 862px;
+    left: 1185px;
+}
+
+.logout-text {
+    left: 1480px;
+}
+
+.deck-frame {
+    display: none;
+    position: fixed;
+    top: -150px;
+    left: -145px;
+    scale: 0.8;
+    z-index: 10;
+}
+
+
+
+@font-face {
+    font-family: "ReggaeOne";
+    src: url("../assets/fonts/ReggaeOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: "RocknRollOne";
+    src: url("../assets/fonts/RocknRollOne-Regular.ttf");
 }
