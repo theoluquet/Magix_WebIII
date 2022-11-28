@@ -10,30 +10,37 @@
     --coins-boutons: 25px;
     --police: 'Chakra Petch', sans-serif;
     width: 100vw;
-    height: 100vh;
+    height: 100vh;    
+    background-color: black;   
 }
 
 * {
     margin: 0;
     padding: 0;
     color: white;
-    overflow: hidden;    
+    overflow: hidden; 
     /* max-width: 1440px; */
 }
 
 body {
-    background-image: url("../assets/jellyshop2.png");
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background-image: url("../assets/jellyshopbig.png");
     background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: cover;
+    background-position-x: left;
+    background-position-y: bottom;
+    background-size: auto;
 }
 
 .chat-frame {
     width: fit-content;
     height: fit-content;
-    position: relative;
-    top: 20%;
-    left: 50%;
+    position: absolute;
+    top: 250px;
+    left: 920px;
     border: none;
     background-color: rgba(255, 255, 255, 0.5);
 }
