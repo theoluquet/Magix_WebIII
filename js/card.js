@@ -19,8 +19,8 @@ export default function getCard(cardInfos) {
             cardImg = "assets/cards/charge.png";
             cardType = "charge";
         }
-        else if (MECHANICS[0].startsWith("Deathratlle")) {
-            cardImg = "assets/cards/deathratlle.png";
+        else if (MECHANICS[0].startsWith("Deathrattle")) {
+            cardImg = "assets/cards/deathrattle.png";
             cardType = "deathratlle";
         }
         else if (MECHANICS[0].startsWith("Stealth")) {

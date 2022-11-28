@@ -133,11 +133,14 @@ a {
 }
 
 .deck-frame {
+    /* width: fit-content;
+    height: 100vh; */
     display: none;
     position: fixed;
-    top: -150px;
+    border: none;
+    top: -100px;
     left: -145px;
-    scale: 0.8;
+    scale: 0.77;
     z-index: 10;
 }
 

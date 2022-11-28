@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <iframe class="deck-frame" style="width:1100px;height:1300px;"
+    <iframe class="deck-frame" style="width:1100px;height:85vh;"
         src="https://magix.apps-de-cours.com/server/#/deck/<?= $_SESSION["key"] ?>">
     </iframe>
 

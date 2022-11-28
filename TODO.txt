@@ -5,6 +5,20 @@ _ Surrender
 _ CSS clean
 
 
+COMPAT :
+_ Lobby :
+Body = 1920x1080, position fixed, background bottom center
+
+_ Game :
+Waiting Screen
+Clickable elements
+button text (wordbreak ?) (timer toolarge), timer outline,
+Player MP 
+Player name background
+
+
+
+MISC :
 _ Clean code
 _ Dics file
 _ Clean assets
