@@ -5,14 +5,6 @@ _ Surrender
 _ CSS clean
 
 
-LOGIN :
-_ Error message
-
-
-MISC :
-    LOCALSTORAGE USERNAME
-
-
 _ Clean code
 _ Dics file
 _ Clean assets

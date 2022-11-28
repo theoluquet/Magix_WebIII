@@ -299,9 +299,8 @@ const updateGameInfos = () => {
 
 
 const initializeGameInfos = () => {
-
-    // localStorage.setItem("playerName", "test");
-    console.log(localStorage.getItem("playerName"));
+    
+    playerNameNode.innerHTML = localStorage.getItem("username");
 
     opponentNameNode.innerHTML = gameInfos.opponent.username;
     opponentHeroClassNode.innerHTML = gameInfos.opponent.heroClass;
@@ -372,6 +371,7 @@ window.addEventListener("load", () => {
     messageNode = document.querySelector(".message");
 
     playerInfoNode = document.querySelector(".player-info");
+    playerNameNode = document.querySelector(".player-name");
     playerHeroClassNode = document.querySelector(".player-hero-class");
     playerHpNode = document.querySelector(".player-hp");
     playerMpNode = document.querySelector(".player-mp");

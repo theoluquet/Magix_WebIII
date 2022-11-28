@@ -32,7 +32,15 @@
                         <label for="password">Password</label> <input type="password" name="password" id="passwordInput" placeholder="Password">
                     </div>
                     <div class="login-button">
-                        <a href="?logout=true">Logout</a>
+                        <div class="connnection-error">
+                            <?php
+                            if ($data["hasConnectionError"]) {
+                                ?>
+                                Wrong credentials, try again.
+                                <?php
+                            }
+                            ?>
+                        </div>
                         <button type="submit">*</button>
                     </div>
                     <div class="logout-link">
