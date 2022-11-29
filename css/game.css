@@ -59,7 +59,7 @@
     border-bottom: 3px solid black;
     display: grid;
     grid-template-columns: 100px 1fr 4fr 3fr;    
-    text-shadow: #000 3px 3px 3px;
+    text-shadow: #000 2px 2px 3px;
     -webkit-font-smoothing: antialiased;  
 }
 
@@ -85,7 +85,9 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    flex-basis: content;    
+    flex-basis: content;
+    text-shadow: #000 -2px 2px 3px;
+    -webkit-font-smoothing: antialiased;
 }
 
 .opponent-hp {
@@ -242,9 +244,15 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.5rem;
-    text-shadow: #000 3px 3px 3px;
+    text-shadow: #000 2px 2px 3px;
     -webkit-font-smoothing: antialiased;    
 }
+
+.player-data1 {
+    text-shadow: #000 -2px 2px 3px;
+    -webkit-font-smoothing: antialiased;
+}
+
 
 .player-data2 {
     margin: 0px;
@@ -304,7 +312,7 @@
     margin-left: 10px;
     margin-right: 10px;
     padding: 10px;
-    background-color: rgb(211, 187, 82);
+    background-color: rgb(196, 178, 99);
     flex-basis: var(--card-width);
     flex-shrink: 0;
     flex-grow: 0;
@@ -362,7 +370,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top;
-    text-shadow: #000 3px 3px 3px;
+    text-shadow: #000 -2px 2px 3px;
     -webkit-font-smoothing: antialiased;
 }
 

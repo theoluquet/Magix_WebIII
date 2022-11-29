@@ -18,8 +18,8 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
     background-image: url(../assets/statscards.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -28,12 +28,15 @@ body {
 
 button {
     margin: 50px;
+    padding: 10px;
+    padding-bottom: 20px;
     display: none;
     width: fit-content;
     height: fit-content;
-    padding: 50px;
     border-radius: 20px;
     border: solid antiquewhite 3px;
+    text-align: center;
+    vertical-align: top;
     font-size: 2rem;
     background-color:darkolivegreen;
     text-shadow: #000 3px 3px 3px;
@@ -45,14 +48,19 @@ button:hover {
 }
 
 .stats-container {
+    width: 80%;
+    flex-basis: 330px;
+    flex-shrink: 0;
+    flex-grow: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
-    margin: 2%;
+    margin: auto;    
+    /* margin-bottom: 10%; */
     padding: 2%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50px;
 }
 
@@ -163,7 +171,7 @@ button:hover {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top;
-    text-shadow: #000 3px 3px 3px;
+    text-shadow: #000 -2px 2px 3px;
     -webkit-font-smoothing: antialiased;
 }
 

@@ -80,6 +80,7 @@ function putOnBoard(cardNode) {
                     .then(data => {})    
             }
         })    
+    // setTimeout(updateGameInfos, 500);
     updateGameInfos();    
 }
 
@@ -189,7 +190,7 @@ function displayMessage(data) {
             break;
         
         case "LAST_GAME_LOST":
-            message = "Waiting for the opponent ...";
+            message = "Defeat ...";
             break;
 
         case "INVALID_ACTION":
@@ -209,7 +210,7 @@ function displayMessage(data) {
             break;
 
         case "CARD_IS_SLEEPING":
-            message = "Wait for the next turn.";
+            message = "Wait for the next turn to play this card.";
             break;
 
         case "MUST_ATTACK_TAUNT_FIRST":
@@ -329,6 +330,7 @@ const state = () => {
         .then(response => response.json())
         .then(data => {       
             gameInfos = data;
+            console.log(gameInfos);
 
             if (gameInfos == "WAITING") {
                 console.log(gameInfos);

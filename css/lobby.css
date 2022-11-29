@@ -4,7 +4,7 @@
     background-color: black;
     --menu-height: 156px;
     --menu-text-height: 28px;
-    --big-menu-text-height: 5px;   
+    --big-menu-text-height: 4px;   
 }
 
 * {
@@ -55,7 +55,7 @@ body {
 .deck {
     /* top: 710px; */
     bottom: 158px;
-    left: 195px;
+    left: 275px;
     background: url("../assets/deckmenu.png");
 }
 
@@ -80,7 +80,7 @@ body {
 
 .logout {
     bottom: var(--menu-height);
-    left: 1500px;
+    left: 1515px;
     background: url("../assets/logoutpotion.png");
 }
 
@@ -117,25 +117,25 @@ a {
 
 .deck-text {
     bottom: var(--big-menu-text-height);
-    left: 200px;
+    left: 275px;
     z-index: 12;
 }
 
 .play-text {    
-    left: 855px;
+    left: 852px;
 }
 
 .practice-text {
-    left: 987px;
+    left: 985px;
 }
 
 .stats-text {
     bottom: var(--big-menu-text-height);
-    left: 1185px;
+    left: 1180px;
 }
 
 .logout-text {
-    left: 1480px;
+    left: 1505px;
 }
 
 .deck-frame {
