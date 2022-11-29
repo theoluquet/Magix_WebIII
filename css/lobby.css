@@ -1,7 +1,10 @@
 :root {
     width: 100vw;
     height: 100vh;   
-    background-color: black;   
+    background-color: black;
+    --menu-height: 156px;
+    --menu-text-height: 28px;
+    --big-menu-text-height: 5px;   
 }
 
 * {
@@ -29,8 +32,8 @@ body {
     width: fit-content;
     height: fit-content;
     position: absolute;
-    top: 90px;
-    left: 1030px;
+    bottom: 820px;
+    left: 1040px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     padding: 10px;
@@ -42,38 +45,41 @@ body {
     width: fit-content;
     height: fit-content;
     position: absolute;
-    top: 240px;
+    /* top: 240px; */
+    bottom: 480px;
     left: 920px;
     border: none;
     background-color: rgba(255, 255, 255, 0.6);
 }
 
 .deck {
-    top: 710px;
+    /* top: 710px; */
+    bottom: 158px;
     left: 195px;
     background: url("../assets/deckmenu.png");
 }
 
 .play {
-    top: 710px;
+    /* top: 710px; */
+    bottom: var(--menu-height);
     left: 845px;
     background: url("../assets/playpotion.png");
 }
 
 .practice {
-    top: 710px;
+    bottom: var(--menu-height);
     left: 1015px;
     background: url("../assets/practicepotion.png");
 }
 
 .stats {
-    top: 710px;
+    bottom: var(--menu-height);
     left: 1185px;
     background: url("../assets/statspotion.png");
 }
 
 .logout {
-    top: 710px;
+    bottom: var(--menu-height);
     left: 1500px;
     background: url("../assets/logoutpotion.png");
 }
@@ -95,7 +101,7 @@ body {
     width: fit-content;
     height: fit-content;
     position: absolute;
-    top: 880px;
+    bottom: var(--menu-text-height);
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     padding: 10px;
@@ -110,7 +116,7 @@ a {
 }
 
 .deck-text {
-    top: 862px;
+    bottom: var(--big-menu-text-height);
     left: 200px;
     z-index: 12;
 }
@@ -124,7 +130,7 @@ a {
 }
 
 .stats-text {
-    top: 862px;
+    bottom: var(--big-menu-text-height);
     left: 1185px;
 }
 
@@ -140,10 +146,9 @@ a {
     border: none;
     top: -100px;
     left: -145px;
-    scale: 0.77;
+    scale: 0.79;
     z-index: 10;
 }
-
 
 
 @font-face {

@@ -21,6 +21,9 @@ require_once("partial/header.php");
 </head>
 
 <body>
+    <div class="splash">
+        <div class="splash-text">Waiting for the opponent ...</div>
+    </div>
     <div class="game-container">
         <div class="opponent-info">
             <div class="opponent-avatar"></div>
@@ -61,8 +64,8 @@ require_once("partial/header.php");
                     <div class="player-hp"></div>
                 </div>             
                 <div class="player-data2">
-                    <div class="player-name"></div>
-                    <div class="player-hero-class"></div>
+                    <!-- <div class="player-name"></div> -->
+                    <!-- <div class="player-hero-class"></div> -->
                 </div>                
             </div>
         </div>

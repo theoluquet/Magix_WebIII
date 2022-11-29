@@ -23,6 +23,7 @@ let attackInitiated = false;
 let gameInfos;
 let gameInfosInitialized = false;
 
+let splashNode;
 let messageNode;
 let timerNode;
 
@@ -36,6 +37,7 @@ let opponentMpNode;
 let opponentDeckNode;
 
 let playerInfoNode;
+let playerData2Node;
 let playerNameNode;
 let playerHeroClassNode;
 let playerAvatarNode;
@@ -300,7 +302,7 @@ const updateGameInfos = () => {
 
 const initializeGameInfos = () => {
     
-    playerNameNode.innerHTML = localStorage.getItem("username");
+    playerData2Node.innerHTML = localStorage.getItem("username") + "<br> (" + gameInfos.heroClass + ")";
 
     opponentNameNode.innerHTML = gameInfos.opponent.username;
     opponentHeroClassNode.innerHTML = gameInfos.opponent.heroClass;
@@ -308,7 +310,7 @@ const initializeGameInfos = () => {
         <img src="${CLASSPICS[gameInfos.opponent.heroClass].path}" alt="${gameInfos.opponent.heroClass}">
         `;
 
-    playerHeroClassNode.innerHTML = gameInfos.heroClass;
+    //playerHeroClassNode.innerHTML = gameInfos.heroClass;
 
     let playerAvatarNode = document.querySelector(".player-data");
     playerAvatarNode.style.background = `url(${CLASSPICS[gameInfos.heroClass].path}) no-repeat bottom`;
@@ -337,6 +339,8 @@ const state = () => {
             else {
                 if (!gameInfosInitialized) {
                     initializeGameInfos();
+                    splashNode.style.animation = "fadeOut 1s linear";
+                    setTimeout(function() {splashNode.remove()}, 1000)
                     gameInfosInitialized = true;                
                 }
                 updateGameInfos();              
@@ -347,6 +351,8 @@ const state = () => {
 
 
 window.addEventListener("load", () => {
+
+    splashNode = document.querySelector(".splash");
     
     timerNode = document.querySelector(".timer");
 
@@ -371,6 +377,7 @@ window.addEventListener("load", () => {
     messageNode = document.querySelector(".message");
 
     playerInfoNode = document.querySelector(".player-info");
+    playerData2Node = document.querySelector(".player-data2");
     playerNameNode = document.querySelector(".player-name");
     playerHeroClassNode = document.querySelector(".player-hero-class");
     playerHpNode = document.querySelector(".player-hp");
