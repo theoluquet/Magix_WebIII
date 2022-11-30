@@ -9,7 +9,7 @@ De plus, il est facile de trouver en ligne des ressources graphiques adaptées (
 
 
 ### Améliorations possibles :
-J'aurai aimé avoir le temps de créer d'animations et d'effets pour les cartes, et pour les messages de victoire/défaite.
+J'aurai aimé avoir le temps de créer plus d'animations et d'effets pour les cartes, et pour les messages de victoire/défaite.
 Je pensais à animer les Hero Power, quand un héros perd de la vie, etc ...
 
 Des effets sonores pourraient également être implantés.
