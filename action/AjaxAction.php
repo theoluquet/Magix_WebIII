@@ -13,10 +13,12 @@
             $gameParams = [];
             $gameParams["key"] = $_SESSION["key"];
 
+
             // Update game state
             if (isset($_POST["game-update"]) && ($_POST["game-update"] = "true")) {
                 $result = parent::callAPI("games/state", $gameParams);
             }
+
 
             // Put a card on the board
             if (isset($_POST["PLAY"]) && isset($_POST["uid"])) {
@@ -25,6 +27,7 @@
                 $gameParams["uid"] = $_POST["uid"];
                 $result = parent::callAPI("games/action", $gameParams);
             }
+
 
             // Register played card in the database
             if (isset($_POST["cardPlayed"])) {
@@ -41,19 +44,19 @@
                 $result = parent::callAPI("games/action", $gameParams);
             }
 
+
             // End Turn
             if (isset($_POST["END_TURN"])) {
                 $gameParams["type"] = "END_TURN";
                 $result = parent::callAPI("games/action", $gameParams);
             }
 
+
             // Hero Power
             if (isset($_POST["HERO_POWER"])) {
                 $gameParams["type"] = "HERO_POWER";
                 $result = parent::callAPI("games/action", $gameParams);
             }
-
-
 
 
 

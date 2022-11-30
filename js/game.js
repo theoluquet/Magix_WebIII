@@ -13,8 +13,9 @@ const CLASSPICS = {
     "Warrior": {path: "assets/heroes/warrior.png"}
 }
 
-let isYourTurnBackground = "linear-gradient( rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1) )";
-let isNotYourTurnBackground = "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9) )";
+
+const isYourTurnBackground = "linear-gradient( rgba(230, 230, 230, 0.9), rgba(230, 230, 230, 0.3) )";
+const isNotYourTurnBackground = "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9) )";
 
 let pickedCardUID = null;
 let targetUID = null;
@@ -38,8 +39,6 @@ let opponentDeckNode;
 
 let playerInfoNode;
 let playerData2Node;
-let playerNameNode;
-let playerHeroClassNode;
 let playerAvatarNode;
 let playerHpNode;
 let playerMpNode;
@@ -48,14 +47,178 @@ let playerHandNode;
 let heroPowerNode;
 let endTurnNode;
 
-let gameBoardNode;
 let playerBoardNode;
 let opponentBoardNode;
 
 
 
+window.addEventListener("load", () => {
+
+    splashNode = document.querySelector(".splash");
+    messageNode = document.querySelector(".message");    
+    timerNode = document.querySelector(".timer");
+
+
+    opponentInfoNode = document.querySelector(".opponent-info");
+
+    opponentDataNode = document.querySelector(".opponent-data");
+    opponentDataNode.id = 0;
+    opponentDataNode.addEventListener("click", function(){attackTarget(opponentDataNode)});
+
+    let opponentDataNodes = opponentDataNode.childNodes;
+    opponentDataNodes.forEach(node => {
+            node.id = 0;
+            node.addEventListener("click", function(){attackTarget(node)});
+        });
+    
+    opponentNameNode = document.querySelector(".opponent-name");
+    opponentHeroClassNode = document.querySelector(".opponent-hero-class");
+    opponentAvatarNode = document.querySelector(".opponent-avatar");
+    opponentHpNode = document.querySelector(".opponent-hp");
+    opponentMpNode = document.querySelector(".opponent-mp");
+    opponentDeckNode = document.querySelector(".opponent-deck");
+
+
+    playerInfoNode = document.querySelector(".player-info");
+    playerData2Node = document.querySelector(".player-data2");
+    playerAvatarNode = document.querySelector(".player-data");
+    playerHpNode = document.querySelector(".player-hp");
+    playerMpNode = document.querySelector(".player-mp");
+    playerDeckNode = document.querySelector(".player-deck");
+    playerHandNode = document.querySelector(".player-hand");
+
+    heroPowerNode  = document.querySelector(".hero-power");
+    heroPowerNode.addEventListener("click", function(){useHeroPower()});
+    endTurnNode  = document.querySelector(".end-turn");
+    endTurnNode.addEventListener("click", function(){endTurn()});
+
+
+    opponentBoardNode = document.querySelector(".opponent-board");
+    playerBoardNode = document.querySelector(".player-board");
+
+    setTimeout(state, 1000);
+});
+
+
+const state = () => {
+
+    let formData = new FormData();
+    formData.append("game-update", "true");
+
+    fetch("ajax.php", { 
+        method: "POST",
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {       
+            gameInfos = data;
+
+            if (typeof gameInfos !== "object") {
+                displayMessage(gameInfos);
+            }
+            else {
+                if (!gameInfosInitialized) {
+                    initializeGameInfos();
+                    splashNode.style.animation = "fadeOut 1s linear";
+                    setTimeout(function() {splashNode.remove()}, 1000)
+                    gameInfosInitialized = true;                
+                }
+                updateGameInfos();              
+            }  
+            setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
+        })
+}
+
+
+const initializeGameInfos = () => {
+    
+    playerData2Node.innerHTML = localStorage.getItem("username") + "<br> (" + gameInfos.heroClass + ")";
+    playerAvatarNode.style.background = `url(${CLASSPICS[gameInfos.heroClass].path}) no-repeat bottom`;
+
+    opponentNameNode.innerHTML = gameInfos.opponent.username;
+    opponentHeroClassNode.innerHTML = gameInfos.opponent.heroClass;
+    opponentAvatarNode.innerHTML = `<img src="${CLASSPICS[gameInfos.opponent.heroClass].path}">`;
+}
+
+
+const updateGameInfos = () => {
+    timerNode.innerHTML = gameInfos.remainingTurnTime;
+    
+    if (gameInfos.yourTurn == true) {
+        playerInfoNode.style.background = isYourTurnBackground;
+        opponentInfoNode.style.background = isNotYourTurnBackground;
+    }
+    else {
+        playerInfoNode.style.background = isNotYourTurnBackground;
+        opponentInfoNode.style.background = isYourTurnBackground;
+    }
+
+    opponentHpNode.innerHTML = gameInfos.opponent.hp;
+    opponentMpNode.innerHTML = gameInfos.opponent.mp;
+    opponentDeckNode.innerHTML = gameInfos.opponent.handSize + "/" + gameInfos.opponent.remainingCardsCount;
+
+    playerHpNode.innerHTML = gameInfos.hp;
+    playerMpNode.innerHTML = gameInfos.mp;
+    playerDeckNode.innerHTML = gameInfos.hand.length + "/" + gameInfos.remainingCardsCount;
+
+    
+    while (opponentBoardNode.hasChildNodes()) {
+        opponentBoardNode.removeChild(opponentBoardNode.firstChild);
+      }
+    let opponentBoardCards = gameInfos.opponent.board;
+    for (let i = 0; i < opponentBoardCards.length; i++) {
+        let card = getCard(opponentBoardCards[i]);
+        card.addEventListener("click", function(){attackTarget(card)});
+
+        let cardChildNodes = card.childNodes;
+        cardChildNodes.forEach(node => {
+            node.addEventListener("click", function(){attackTarget(card)});
+        });        
+        opponentBoardNode.append(card);       
+    }
+
+
+    while (playerBoardNode.hasChildNodes()) {
+        playerBoardNode.removeChild(playerBoardNode.firstChild);
+      }
+    let playerBoardCards = gameInfos.board;
+    for (let i = 0; i < playerBoardCards.length; i++) {
+        let card = getCard(playerBoardCards[i])
+        card.addEventListener("click", function(){beginAttack(card)});
+
+        let cardChildNodes = card.childNodes;
+        cardChildNodes.forEach(node => {
+            node.addEventListener("click", function(){beginAttack(card)});
+        });        
+        playerBoardNode.append(card);       
+    }
+
+
+    while (playerHandNode.hasChildNodes()) {
+        playerHandNode.removeChild(playerHandNode.firstChild);
+      }
+    let playerHandCards = gameInfos.hand;    
+    for (let i = 0; i < playerHandCards.length; i++) {
+        let card = getCard(playerHandCards[i]);
+        card.addEventListener("click", function(){putOnBoard(card)});
+
+        if (gameInfos.mp < playerHandCards[i].cost) {
+            card.style.opacity = "0.75";
+        }
+
+        let cardChildNodes = card.childNodes;
+        cardChildNodes.forEach(node => {
+            node.addEventListener("click", function(){putOnBoard(card)});
+        });
+        playerHandNode.append(card);       
+    }    
+}
+
+
+
 function putOnBoard(cardNode) {
     pickedCardUID = cardNode.id;
+    console.log(pickedCardUID);
     let formData = new FormData();
     formData.append("PLAY", "PLAY");
     formData.append("uid", pickedCardUID);
@@ -69,6 +232,7 @@ function putOnBoard(cardNode) {
                 displayMessage(data);
             }
             else {
+                // Tell the database that this card was played
                 let playedCardID = cardNode.getAttribute("data-ID");
                 let formDataCardPlayed = new FormData();
                 formDataCardPlayed.append("cardPlayed", playedCardID);
@@ -80,7 +244,6 @@ function putOnBoard(cardNode) {
                     .then(data => {})    
             }
         })    
-    // setTimeout(updateGameInfos, 500);
     updateGameInfos();    
 }
 
@@ -92,7 +255,7 @@ function beginAttack(cardNode) {
 
 
 function attackTarget(targetNode) {
-    
+
     if (attackInitiated == true) {   
         targetUID = targetNode.id;
 
@@ -108,10 +271,6 @@ function attackTarget(targetNode) {
             .then(data => {
                 if (typeof data !== "object") {
                     displayMessage(data);
-                }
-                else {
-                    console.log("Attaque réussie");
-                    console.log(data);
                 }
             })
         pickedCardUID = null;    
@@ -135,33 +294,10 @@ function useHeroPower() {
                 displayMessage(data);
             }
             else {
+                displayMessage("HERO_POWER");
             }
         })
         updateGameInfos();
-
-    // let formDataResetStats = new FormData();
-    // formDataResetStats.append("resetStats", "resetStats");
-    // fetch("ajax.php", { 
-    //     method: "POST", 
-    //     body: formDataResetStats
-    // })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.clear();
-    //         console.log(data);
-    //     })
-        
-    // let formDataGetStats = new FormData();
-    // formDataGetStats.append("getStats", "getStats");
-    // fetch("ajax.php", { 
-    //     method: "POST", 
-    //     body: formDataGetStats
-    // })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.clear();
-    //         console.log(data);
-    //     }) 
 }
 
 
@@ -173,13 +309,20 @@ function endTurn() {
         body: formData
     })
         .then(response => response.json())
-        .then(data => {displayMessage(data);})    
-    //updateGameInfos();
+        .then(data => {
+            if (typeof data !== "object") {
+                displayMessage(data);
+            }
+        })
+        updateGameInfos();
 }
 
 
 function displayMessage(data) {
     let message = "";
+    messageNode.style.fontSize = "1.8rem"
+    messageNode.style.color = "whitesmoke";
+    messageNode.style.fontFamily = 'ReggaeOne';
     switch(data) {
         case "WAITING":
             message = "Waiting for the opponent ...";
@@ -187,10 +330,16 @@ function displayMessage(data) {
 
         case "LAST_GAME_WON":
             message = "Victory !";
+            messageNode.style.fontSize = "5rem";
+            messageNode.style.color = "gold";
+            messageNode.style.fontFamily = 'Triforce';
             break;
         
         case "LAST_GAME_LOST":
             message = "Defeat ...";
+            messageNode.style.fontSize = "5rem";
+            messageNode.style.color = "crimson";
+            messageNode.style.fontFamily = 'Triforce';
             break;
 
         case "INVALID_ACTION":
@@ -205,10 +354,6 @@ function displayMessage(data) {
             message = "The board is already full !";
             break;
 
-        case "CARD_NOT_IN_HAND":
-            message = "The card isn't in your hand.";
-            break;
-
         case "CARD_IS_SLEEPING":
             message = "Wait for the next turn to play this card.";
             break;
@@ -221,179 +366,15 @@ function displayMessage(data) {
             message = "Wait until it lost its stealth.";
             break;
 
+        case "HERO_POWER":
+            message = "Hero Power used !";
+            break;
+
         case "HERO_POWER_ALREADY_USED":
-            message = "You already used your Hero Power during this turn.";
+            message = "You already used it during this turn !";
             break;
     }
     
     messageNode.innerHTML = message;
     setTimeout(function(){messageNode.innerHTML = ""}, 5000);
 }
-
-
-const updateGameInfos = () => {
-    timerNode.innerHTML = gameInfos.remainingTurnTime;
-    
-    if (gameInfos.yourTurn == true) {
-        playerInfoNode.style.background = isYourTurnBackground;
-        opponentInfoNode.style.background = isNotYourTurnBackground;
-    }
-    else {
-        playerInfoNode.style.background = isNotYourTurnBackground;
-        opponentInfoNode.style.background = isYourTurnBackground;
-    }
-
-    opponentHpNode.innerHTML = gameInfos.opponent.hp;
-    opponentMpNode.innerHTML = gameInfos.opponent.mp;
-    opponentDeckNode.innerHTML = gameInfos.opponent.handSize;
-
-    playerHpNode.innerHTML = gameInfos.hp;
-    playerMpNode.innerHTML = gameInfos.mp;
-    playerDeckNode.innerHTML = gameInfos.hand.length;
-
-    
-    while (opponentBoardNode.hasChildNodes()) {
-        opponentBoardNode.removeChild(opponentBoardNode.firstChild);
-      }
-    let opponentBoardCards = gameInfos.opponent.board;
-    for (let i = 0; i < opponentBoardCards.length; i++) {
-        let card = getCard(opponentBoardCards[i])
-        let cardChildNodes = card.childNodes;
-        cardChildNodes.forEach(node => {
-            node.addEventListener("click", function(){attackTarget(card)});
-        });        
-        opponentBoardNode.append(card);       
-    }
-
-
-    while (playerBoardNode.hasChildNodes()) {
-        playerBoardNode.removeChild(playerBoardNode.firstChild);
-      }
-    let playerBoardCards = gameInfos.board;
-    for (let i = 0; i < playerBoardCards.length; i++) {
-        let card = getCard(playerBoardCards[i])
-        let cardChildNodes = card.childNodes;
-        cardChildNodes.forEach(node => {
-            node.addEventListener("click", function(){beginAttack(card)});
-        });        
-        playerBoardNode.append(card);       
-    }
-
-
-    while (playerHandNode.hasChildNodes()) {
-        playerHandNode.removeChild(playerHandNode.firstChild);
-      }
-    let playerHandCards = gameInfos.hand;    
-    for (let i = 0; i < playerHandCards.length; i++) {
-        // let playerHandCardNode = document.createElement("div");
-        // playerHandCardNode.classList.add("player-hand-card");
-        // playerHandCardNode.innerHTML = getCard(playerHandCards[i]);
-        let card = getCard(playerHandCards[i]);
-        /////////////////////////////////////////////
-        //card.setAttribute(data-cardID);
-        ////////////////////////////////////////////
-        let cardChildNodes = card.childNodes;
-        cardChildNodes.forEach(node => {
-            node.addEventListener("click", function(){putOnBoard(card)});
-        });
-        playerHandNode.append(card);       
-    }    
-}
-
-
-const initializeGameInfos = () => {
-    
-    playerData2Node.innerHTML = localStorage.getItem("username") + "<br> (" + gameInfos.heroClass + ")";
-
-    opponentNameNode.innerHTML = gameInfos.opponent.username;
-    opponentHeroClassNode.innerHTML = gameInfos.opponent.heroClass;
-    opponentAvatarNode.innerHTML = `        
-        <img src="${CLASSPICS[gameInfos.opponent.heroClass].path}" alt="${gameInfos.opponent.heroClass}">
-        `;
-
-    //playerHeroClassNode.innerHTML = gameInfos.heroClass;
-
-    let playerAvatarNode = document.querySelector(".player-data");
-    playerAvatarNode.style.background = `url(${CLASSPICS[gameInfos.heroClass].path}) no-repeat bottom`;
-}
-
-
-const state = () => {
-
-    let formData = new FormData();
-    formData.append("game-update", "true");
-
-    fetch("ajax.php", { // Il faut créer cette page et son contrôleur appelle
-        method: "POST", // l’API (games/state)
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {       
-            gameInfos = data;
-            console.log(gameInfos);
-
-            if (gameInfos == "WAITING") {
-                console.log(gameInfos);
-            }
-            else if (typeof gameInfos !== "object") {
-                displayMessage(gameInfos);
-            }
-            else {
-                if (!gameInfosInitialized) {
-                    initializeGameInfos();
-                    splashNode.style.animation = "fadeOut 1s linear";
-                    setTimeout(function() {splashNode.remove()}, 1000)
-                    gameInfosInitialized = true;                
-                }
-                updateGameInfos();              
-            }  
-            setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
-        })
-}
-
-
-window.addEventListener("load", () => {
-
-    splashNode = document.querySelector(".splash");
-    
-    timerNode = document.querySelector(".timer");
-
-    opponentInfoNode = document.querySelector(".opponent-info");
-
-    opponentDataNode = document.querySelector(".opponent-data");
-    opponentDataNode.id = 0;
-    opponentDataNode.addEventListener("click", function(){attackTarget(opponentDataNode)});
-    let opponentDataNodes = opponentDataNode.childNodes;
-    opponentDataNodes.forEach(node => {
-            node.id = 0;
-            node.addEventListener("click", function(){attackTarget(node)});
-        });
-    
-    opponentNameNode = document.querySelector(".opponent-name");
-    opponentHeroClassNode = document.querySelector(".opponent-hero-class");
-    opponentAvatarNode = document.querySelector(".opponent-avatar");
-    opponentHpNode = document.querySelector(".opponent-hp");
-    opponentMpNode = document.querySelector(".opponent-mp");
-    opponentDeckNode = document.querySelector(".opponent-deck");
-
-    messageNode = document.querySelector(".message");
-
-    playerInfoNode = document.querySelector(".player-info");
-    playerData2Node = document.querySelector(".player-data2");
-    playerNameNode = document.querySelector(".player-name");
-    playerHeroClassNode = document.querySelector(".player-hero-class");
-    playerHpNode = document.querySelector(".player-hp");
-    playerMpNode = document.querySelector(".player-mp");
-    playerDeckNode = document.querySelector(".player-deck");
-    playerHandNode = document.querySelector(".player-hand");
-    heroPowerNode  = document.querySelector(".hero-power");
-    heroPowerNode.addEventListener("click", function(){useHeroPower()});
-    endTurnNode  = document.querySelector(".end-turn");
-    endTurnNode.addEventListener("click", function(){endTurn()});
-
-    gameBoardNode = document.querySelector(".game-board");
-    opponentBoardNode = document.querySelector(".opponent-board");
-    playerBoardNode = document.querySelector(".player-board");
-
-    setTimeout(state, 1000); // Appel initial (attendre 1 seconde)
-});

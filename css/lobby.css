@@ -4,8 +4,9 @@
     background-color: black;
     --menu-height: 156px;
     --menu-text-height: 28px;
-    --big-menu-text-height: 4px;   
+    --big-menu-text-height: 4px;
 }
+
 
 * {
     margin: 0;
@@ -15,18 +16,19 @@
     font-family: 'ReggaeOne';
 }
 
+
 body {
     width: 1920px;
     height: 1080px;
     position: fixed;
     bottom: 0px;
     left: 0px;
-    background-image: url("../assets/jellyshopbig.png");
+    background-image: url("../assets/jellyshop.png");
     background-repeat: no-repeat;
     background-position-x: left;
     background-position-y: bottom;
-    /* background-size: 1600px 1080px; */
 }
+
 
 .welcome {
     width: fit-content;
@@ -41,6 +43,7 @@ body {
     font-size: 2rem;
 }
 
+
 .chat-frame {
     width: fit-content;
     height: fit-content;
@@ -52,19 +55,20 @@ body {
     background-color: rgba(255, 255, 255, 0.6);
 }
 
+
 .deck {
-    /* top: 710px; */
     bottom: 158px;
     left: 275px;
     background: url("../assets/deckmenu.png");
 }
 
+
 .play {
-    /* top: 710px; */
     bottom: var(--menu-height);
     left: 845px;
     background: url("../assets/playpotion.png");
 }
+
 
 .practice {
     bottom: var(--menu-height);
@@ -72,17 +76,20 @@ body {
     background: url("../assets/practicepotion.png");
 }
 
+
 .stats {
     bottom: var(--menu-height);
     left: 1185px;
     background: url("../assets/statspotion.png");
 }
 
+
 .logout {
     bottom: var(--menu-height);
     left: 1515px;
     background: url("../assets/logoutpotion.png");
 }
+
 
 .menu {
     width: 110px;
@@ -92,10 +99,12 @@ body {
     cursor: pointer;
 }
 
+
 .menu:hover {
     scale: 1.07;
     rotate: -15deg;
 }
+
 
 .description {
     width: fit-content;
@@ -109,11 +118,13 @@ body {
     font-size: 2rem;
 }
 
+
 a {
     position: absolute;
     width: 110px;
     height: 110px;
 }
+
 
 .deck-text {
     bottom: var(--big-menu-text-height);
@@ -121,26 +132,29 @@ a {
     z-index: 12;
 }
 
+
 .play-text {    
     left: 852px;
 }
 
+
 .practice-text {
     left: 985px;
 }
+
 
 .stats-text {
     bottom: var(--big-menu-text-height);
     left: 1180px;
 }
 
+
 .logout-text {
     left: 1505px;
 }
 
+
 .deck-frame {
-    /* width: fit-content;
-    height: 100vh; */
     display: none;
     position: fixed;
     border: none;
@@ -149,6 +163,7 @@ a {
     scale: 0.79;
     z-index: 10;
 }
+
 
 
 @font-face {
