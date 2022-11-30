@@ -324,10 +324,6 @@ function displayMessage(data) {
     messageNode.style.color = "whitesmoke";
     messageNode.style.fontFamily = 'ReggaeOne';
     switch(data) {
-        case "WAITING":
-            message = "Waiting for the opponent ...";
-            break;
-
         case "LAST_GAME_WON":
             message = "Victory !";
             messageNode.style.fontSize = "5rem";
