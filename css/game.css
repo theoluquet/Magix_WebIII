@@ -52,7 +52,7 @@
     width: 100vw;
     height: 100vh;
     background-blend-mode: darken;
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9) ), url("../assets/board0.png");
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9) ), url("../assets/board.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

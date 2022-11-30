@@ -9,10 +9,15 @@ De plus, il est facile de trouver en ligne des ressources graphiques adaptées (
 
 
 ### Améliorations possibles :
+Mieux encapsuler les fonctions de jeu, et les requêtes ajax.
+
+Rendre les pages plus "responsive", et adaptatives à tous les formats.
+
 J'aurai aimé avoir le temps de créer plus d'animations et d'effets pour les cartes, et pour les messages de victoire/défaite.
 Je pensais à animer les Hero Power, quand un héros perd de la vie, etc ...
+Une animation de brume mauve était prévue pour le Lobby, mais pas implémentée faute de temps & connaissances.
 
-Des effets sonores pourraient également être implantés.
+Des effets sonores & musiques pourraient également être implémentées.
 
 
 
