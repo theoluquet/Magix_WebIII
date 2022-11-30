@@ -170,14 +170,11 @@ button:hover {
 
 .card-stats {
     margin: 0;
-    width: var(--card-width);
+    width: fit-content;
     position: absolute;
     top: -20px;
-    right: -110px;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: space;     */
+    right: -31px;
+    overflow: visible;
 }
 
 

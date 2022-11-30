@@ -398,10 +398,11 @@
 
 .card-stats {
     margin: 0;
-    width: var(--card-width);
+    width: fit-content;
     position: absolute;
     top: -20px;
-    right: -110px;
+    right: -31px;
+    overflow: visible;
 }
 
 
