@@ -4,6 +4,7 @@
     height: 100vh;
 }
 
+
 * {
     margin: 0;
     padding: 0;
@@ -11,10 +12,12 @@
     overflow: hidden;
 }
 
+
 body {
     width: 100vw;
     height: 100vh;
 }
+
 
 .index-background {
     width: 6243px;
@@ -27,6 +30,7 @@ body {
     animation: slide 200s linear infinite;
 
 }
+
 
 .main-frame {
     width: fit-content;
@@ -42,6 +46,7 @@ body {
 
 }
 
+
 h1 {
     width: 100%;
     height: fit-content;
@@ -52,6 +57,7 @@ h1 {
     margin-bottom: 10%;
 }
 
+
 .login-form-frame {
     width: 100%;
     height: fit-content;
@@ -59,14 +65,17 @@ h1 {
     font-size: 2em;    
 }
 
+
 form {
     width: 100%;
     height: fit-content;
 }
 
+
 label {
     margin-top: 5px;
 }
+
 
 form div {
     width: 100%;
@@ -75,6 +84,7 @@ form div {
     flex-direction: row;
     justify-content: space-around;
 }
+
 
 input {
     width: 12em;
@@ -90,12 +100,14 @@ input {
     margin: 10px;
 }
 
+
 .connnection-error {
     margin-top: 25px;
     font-size: 1rem;
     font-family: 'RocknRollOne';
     color:crimson;
 }
+
 
 button {
     font-family: 'Triforce';
@@ -106,6 +118,7 @@ button {
     cursor: pointer;
     transition: transform 0.8s;
 }
+
 
 button:hover {
     transform: rotate(90deg);

@@ -21,9 +21,10 @@ window.addEventListener("load", () => {
         .then(response => response.json())
         .then(data => {
             
-                allStats = data["stats"];
-                allCards = data["cards"];
+                allStats = data["stats"]; // List of all the played cards & their statistics (from by the database)
+                allCards = data["cards"]; // List all the Magix cards (from the Magix API)
 
+                // When there's no statistics to display
                 if (data["stats"].length == 0) {
                     let noStatsNode = document.createElement("div");
                     noStatsNode.classList.add("no-stats");
@@ -31,6 +32,7 @@ window.addEventListener("load", () => {
                     statsContainerNode.append(noStatsNode);
                 }
                 else {
+                    // Display each played card :
                     allStats.forEach(card => {
 
                         let cardInfoNode = document.createElement("div");
@@ -55,6 +57,7 @@ window.addEventListener("load", () => {
                 
                         cardInfoNode.append(cardNode);
                         cardInfoNode.append(cardDataNode);
+
                         statsContainerNode.append(cardInfoNode);        
                     });
                     buttonNode.style.display = "initial";
@@ -74,4 +77,5 @@ function resetStats() {
         .then(data => {})
     
     window.location.reload(true);
+    buttonNode.style.display = "none";
 }

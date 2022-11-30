@@ -3,9 +3,10 @@
 
     class StatsCardsDAO {     
 
+        // Check wether the card is already in the database, and increments the number of times it was played
         public static function cardPlayed($cardUID) {
             $connection = Connection::getConnection();
-
+            
             $statementCardExistence = $connection->prepare("SELECT * FROM played_cards WHERE cardID = ?");
             $statementCardExistence->bindParam(1, $cardUID);
             $statementCardExistence->execute();
@@ -27,6 +28,7 @@
         }
 
 
+        // Returns all played cards statistics
         public static function getStats() {
             $connection = Connection::getConnection();
 
@@ -39,7 +41,8 @@
             return $cardStats;
         }
 
-
+        
+        // Resets all played cards statistics
         public static function resetStats() {
             $connection = Connection::getConnection();
 

@@ -1,11 +1,9 @@
 
 <?php
-// require_once("action/GameAction.php");
+    require_once("action/GameAction.php");
 
-// $action = new GameAction();
-// $data = $action->execute();
-
-require_once("partial/header.php");
+    $action = new GameAction();
+    $data = $action->execute();
 ?>
 
 
@@ -26,8 +24,8 @@ require_once("partial/header.php");
     </div>
     <div class="game-container">
         <div class="opponent-info">
-            <div class="opponent-avatar"></div>
-            <div class="opponent-data">
+            <div class="opponent-avatar clickable"></div>
+            <div class="opponent-data clickable">
                 <div class="opponent-data1">
                     <div class="opponent-hp"></div>
                     <div class="opponent-mp"></div>
@@ -43,8 +41,8 @@ require_once("partial/header.php");
             </div>
             <div class="player-commands">
                 <div class="timer"></div>
-                <div class="end-turn">End Turn</div>
-                <div class="hero-power">Hero Power</div>
+                <div class="end-turn clickable">End Turn</div>
+                <div class="hero-power clickable">Hero Power</div>
             </div>
         </div>
 
@@ -64,16 +62,8 @@ require_once("partial/header.php");
                     <div class="player-hp"></div>
                 </div>             
                 <div class="player-data2">
-                    <!-- <div class="player-name"></div> -->
-                    <!-- <div class="player-hero-class"></div> -->
                 </div>                
             </div>
         </div>
     </div>
 </body>
-
-</html>
-
-
-<?php
-    require_once("partial/footer.php");

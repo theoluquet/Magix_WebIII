@@ -3,23 +3,20 @@
 
     $action = new IndexAction();
     $data = $action->execute();
-
-    require_once("partial/header.php");
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>Login Magix</title>
-    <!-- <script defer src=""></script> -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="css/index.css">
 </head>
 
-<body>
-    
+<body>    
     <div class="index-background"></div>
         <div class="main-frame">
             <h1>Magix</h1>
@@ -49,6 +46,3 @@
             </div>
         </div>
 </body>
-
-<?php
-    require_once("partial/footer.php");

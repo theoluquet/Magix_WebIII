@@ -1,10 +1,8 @@
 <?php
-    // require_once("action/StatsCardsAction.php");
+    require_once("action/StatsCardsAction.php");
 
-    // $action = new StatsCardsAction();
-    // $data = $action->execute();
-
-    // require_once("partial/header.php");
+    $action = new StatsCardsAction();
+    $data = $action->execute();
 ?>
 
 

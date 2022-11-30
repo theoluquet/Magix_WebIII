@@ -40,7 +40,9 @@
             return json_decode($result);
         }
 
+
         public function execute() {
+            
             if (!empty($_GET["logout"])) {
                 $logoutData = [];
                 $logoutData["key"] = $_SESSION["key"];
@@ -60,16 +62,10 @@
 				exit;
 			}
 
-            $data = $this->executeAction();
+            $data = $this->executeAction();        
 
-            // Variable nécessaire dans plusieurs vues (ex: header/footer)
-            //$data["username"] = $_SESSION["username"] ?? "invité";
-            //$data["isConnected"] = $_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC;         
-
-            return $data; // Retourne à la vue
-        }        
-
-
-        // Template method (design pattern)
+            return $data; 
+        } 
+        
         protected abstract function executeAction();
     }

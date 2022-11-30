@@ -1,5 +1,4 @@
 GAME :
-_ Deck remaining
 _ Card states [glow] (charge, taunt, confused, stealth, idle != sleeping, not enough MP ...)
 _ Surrender
 _ CSS clean
@@ -9,17 +8,16 @@ COMPAT :
 
 _ Game :
 Clickable elements
-button text (wordbreak ?) (timer toolarge), timer outline,
+button text (wordbreak ?) (timer toolarge), timer outline, REDIMENSIONNER BARRE HAUT
 Player MP 
-Player name background
 
 
 
 MISC :
+_ CONTRAST JELLY SHOP
 _ Clean code
 _ Dics file
 _ Clean assets
-_ Comments
 _ Disable zoom
 
 

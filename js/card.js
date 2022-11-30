@@ -34,7 +34,7 @@ export default function getCard(cardInfos) {
     }
     
     let cardNode = document.createElement("div");
-    cardNode.className = `card ${cardType}`;
+    cardNode.className = `card ${cardType} clickable`;
     cardNode.id = `${UID}`;
     cardNode.setAttribute("data-ID", ID);
 
@@ -50,8 +50,6 @@ export default function getCard(cardInfos) {
         <div class="card-mechanic" id="${UID}">${MECHANICS}</div>        
         <div class="card-dedicated" id="${UID}">${DEDICATED}</div>
         `;
-        
-    //cardNode.querySelectorAll("div, img").id = `${UID}`;
 
     return cardNode;
 }

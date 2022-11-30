@@ -245,7 +245,7 @@ const updateGameInfos = () => {
 
     opponentHpNode.innerHTML = gameInfos.opponent.hp;
     opponentMpNode.innerHTML = gameInfos.opponent.mp;
-    opponentDeckNode.innerHTML = gameInfos.opponent.remainingCardsCount;
+    opponentDeckNode.innerHTML = gameInfos.opponent.handSize;
 
     playerHpNode.innerHTML = gameInfos.hp;
     playerMpNode.innerHTML = gameInfos.mp;

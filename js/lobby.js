@@ -3,6 +3,7 @@ let deckFrameNode;
 let deckMenuNode;
 let deckTextNode;
 
+
 window.addEventListener("load", () => {
     deckVisible = false;
     deckFrameNode = document.querySelector(".deck-frame");
@@ -10,10 +11,12 @@ window.addEventListener("load", () => {
     deckTextNode = document.querySelector(".deck-text");
 
     deckMenuNode.addEventListener("click", manageDeck);
-
+    
+    // Saves the user name in localStorage
     let username = document.querySelector(".username").innerHTML
     localStorage.setItem("username", username);
 }) 
+
 
 function manageDeck() {
     if (deckVisible == false) {

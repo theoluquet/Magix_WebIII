@@ -15,7 +15,9 @@
             if (!empty($_POST["username"]) && !empty($_POST["password"])) {
                 $data["username"] = $_POST["username"];
                 $data["password"] = $_POST["password"];
+                
                 $result = parent::callAPI("signin", $data);
+
                 if ($result == "INVALID_USERNAME_PASSWORD") {
                     $hasConnectionError = true;
                     }
@@ -33,9 +35,3 @@
         }
     }
 ?>
-
-<script type="text/JavaScript">
-    console.log("script");
-    localStorage.clear();
-    localStorage.setItem("playerName", <?php $playerName ?>);
-</script>
