@@ -8,7 +8,7 @@ Les personnages sont très expressifs et il y a beaucoup d'icônes réutilisable
 De plus, il est facile de trouver en ligne des ressources graphiques adaptées (artworks aux dimensions standardisées et gérant la transparence).
 
 
-### Améliorations possible :
+### Améliorations possibles :
 J'aurai aimé avoir le temps de créer d'animations et d'effets pour les cartes, et pour les messages de victoire/défaite.
 Je pensais à animer les Hero Power, quand un héros perd de la vie, etc ...
 
