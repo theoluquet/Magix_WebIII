@@ -19,14 +19,14 @@
 
 <body>
     <iframe class="deck-frame" style="width:1100px;height:85vh;"
-        src="https://magix.apps-de-cours.com/server/#/deck/<?= $_SESSION["key"] ?>">
+        src="https://magix.apps-de-cours.com/server/deck/<?= $_SESSION["key"] ?>">
     </iframe>
 
     <div class="welcome">Welcome, <span class="username"><?= $_SESSION["username"] ?></span> !</div>
 
     <div class="chat-frame">
         <iframe style="width:700px;height:240px;"
-         src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>">
+         src="https://magix.apps-de-cours.com/server/chat/<?= $_SESSION["key"] ?>">
         </iframe>
     </div>
 
