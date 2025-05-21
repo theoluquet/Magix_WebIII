@@ -6,7 +6,7 @@ let statsContainerNode;
 let buttonNode;
 
 
-window.addEventListener("load", () => {
+window.onload = () => {
 
     statsContainerNode = document.querySelector(".stats-container");
     buttonNode = document.querySelector("button");
@@ -63,7 +63,7 @@ window.addEventListener("load", () => {
                     buttonNode.style.display = "initial";
                 }
         }) 
-});
+};
 
 
 function resetStats() {

@@ -4,18 +4,18 @@ let deckMenuNode;
 let deckTextNode;
 
 
-window.addEventListener("load", () => {
+window.onload = () => {
     deckVisible = false;
     deckFrameNode = document.querySelector(".deck-frame");
     deckMenuNode = document.querySelector(".deck");
     deckTextNode = document.querySelector(".deck-text");
 
-    deckMenuNode.addEventListener("click", manageDeck);
+    deckMenuNode.onclick = manageDeck;
     
     // Saves the user name in localStorage
     let username = document.querySelector(".username").innerHTML
     localStorage.setItem("username", username);
-}) 
+};
 
 
 function manageDeck() {
@@ -23,14 +23,14 @@ function manageDeck() {
         deckFrameNode.style.display = "inherit";
         deckTextNode.innerHTML = "Close<br>Deck";
         deckTextNode.style.cursor = "pointer";
-        deckTextNode.addEventListener("click", manageDeck);
+        deckTextNode.onclick = manageDeck;
         deckVisible = true;
     }
     else if (deckVisible == true) {
         deckFrameNode.style.display = "none";
         deckTextNode.innerHTML = "Open<br>Deck";
         deckTextNode.style.cursor = "default";
-        deckTextNode.removeEventListener("click", manageDeck);
+        deckTextNode.onclick = null;
         deckVisible = false;
     }
 }

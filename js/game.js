@@ -52,8 +52,7 @@ let opponentBoardNode;
 
 
 
-window.addEventListener("load", () => {
-
+window.onload = () => {
     splashNode = document.querySelector(".splash");
     messageNode = document.querySelector(".message");    
     timerNode = document.querySelector(".timer");
@@ -63,12 +62,12 @@ window.addEventListener("load", () => {
 
     opponentDataNode = document.querySelector(".opponent-data");
     opponentDataNode.id = 0;
-    opponentDataNode.addEventListener("click", function(){attackTarget(opponentDataNode)});
+    opponentDataNode.onclick = function(){attackTarget(opponentDataNode)};
 
     let opponentDataNodes = opponentDataNode.childNodes;
     opponentDataNodes.forEach(node => {
             node.id = 0;
-            node.addEventListener("click", function(){attackTarget(node)});
+        node.onclick = function(){attackTarget(node)};
         });
     
     opponentNameNode = document.querySelector(".opponent-name");
@@ -87,17 +86,17 @@ window.addEventListener("load", () => {
     playerDeckNode = document.querySelector(".player-deck");
     playerHandNode = document.querySelector(".player-hand");
 
-    heroPowerNode  = document.querySelector(".hero-power");
-    heroPowerNode.addEventListener("click", function(){useHeroPower()});
-    endTurnNode  = document.querySelector(".end-turn");
-    endTurnNode.addEventListener("click", function(){endTurn()});
+    heroPowerNode = document.querySelector(".hero-power");
+    heroPowerNode.onclick = function(){useHeroPower()};
+    endTurnNode = document.querySelector(".end-turn");
+    endTurnNode.onclick = function(){endTurn()};
 
 
     opponentBoardNode = document.querySelector(".opponent-board");
     playerBoardNode = document.querySelector(".player-board");
 
     setTimeout(state, 1000);
-});
+}
 
 
 const state = () => {
@@ -168,11 +167,11 @@ const updateGameInfos = () => {
     let opponentBoardCards = gameInfos.opponent.board;
     for (let i = 0; i < opponentBoardCards.length; i++) {
         let card = getCard(opponentBoardCards[i]);
-        card.addEventListener("click", function(){attackTarget(card)});
+        card.onclick = function(){attackTarget(card)};
 
         let cardChildNodes = card.childNodes;
         cardChildNodes.forEach(node => {
-            node.addEventListener("click", function(){attackTarget(card)});
+            node.onclick = function(){attackTarget(card)};
         });        
         opponentBoardNode.append(card);       
     }
@@ -184,11 +183,11 @@ const updateGameInfos = () => {
     let playerBoardCards = gameInfos.board;
     for (let i = 0; i < playerBoardCards.length; i++) {
         let card = getCard(playerBoardCards[i])
-        card.addEventListener("click", function(){beginAttack(card)});
+        card.onclick = function(){beginAttack(card)};
 
         let cardChildNodes = card.childNodes;
         cardChildNodes.forEach(node => {
-            node.addEventListener("click", function(){beginAttack(card)});
+            node.onclick = function(){beginAttack(card)};
         });        
         playerBoardNode.append(card);       
     }
@@ -200,7 +199,7 @@ const updateGameInfos = () => {
     let playerHandCards = gameInfos.hand;    
     for (let i = 0; i < playerHandCards.length; i++) {
         let card = getCard(playerHandCards[i]);
-        card.addEventListener("click", function(){putOnBoard(card)});
+        card.onclick = function(){putOnBoard(card)};
 
         if (gameInfos.mp < playerHandCards[i].cost) {
             card.style.opacity = "0.75";
@@ -208,7 +207,7 @@ const updateGameInfos = () => {
 
         let cardChildNodes = card.childNodes;
         cardChildNodes.forEach(node => {
-            node.addEventListener("click", function(){putOnBoard(card)});
+            node.onclick = function(){putOnBoard(card)};
         });
         playerHandNode.append(card);       
     }    
