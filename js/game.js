@@ -124,7 +124,7 @@ const state = () => {
                 }
                 updateGameInfos();              
             }  
-            setTimeout(state, 1000); // [PROF] Attendre 1 seconde avant de relancer l’appel
+            setTimeout(state, 2000); // [PROF] Attendre 2 secondes avant de relancer l’appel
         })
 }
 
