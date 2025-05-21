@@ -7,7 +7,6 @@ export default function getCard(cardInfos) {
     const ATK = cardInfos.atk;
     const HP = cardInfos.hp;
     const STATE = cardInfos.state;
-    const DEDICATED = cardInfos.dedicated;
     let cardImgPath = "assets/cards/default.png";
     let cardType = "default";
 
@@ -64,8 +63,7 @@ export default function getCard(cardInfos) {
         <div class="card-img-container" id="${UID}">
             <img src="${cardImgPath}" class="card-img" id="${UID}">
         </div>
-        <div class="card-mechanic" id="${UID}">${MECHANICS}</div>        
-        <div class="card-dedicated" id="${UID}">${DEDICATED}</div>
+        <div class="card-mechanic" id="${UID}">${MECHANICS}</div>
         `;
 
     return cardNode;

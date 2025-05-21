@@ -151,23 +151,6 @@ button:hover {
 }
 
 
-.card-dedicated {
-    width: 140px;
-    height: fit-content;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    bottom: 1px;
-    font-family: 'RocknRollOne';
-    font-size: 0.5rem;
-    font-weight: 150;
-    color: black;
-    text-align: center;
-    text-justify: center;
-    font-style: italic;
-}
-
-
 .card-stats {
     margin: 0;
     width: fit-content;
